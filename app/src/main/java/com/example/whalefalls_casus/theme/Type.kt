@@ -1,4 +1,4 @@
-package com.example.whalefalls_casus.ui.theme
+package com.example.whalefalls_casus.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
