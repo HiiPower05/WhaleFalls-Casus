@@ -6,3 +6,7 @@ agp = "8.8.0"
 compileSdk = 35
 coreKtx = "1.15.0"
 activityCompose = "1.10.0"
+
+
+changed firebase version instead of gradle.
+implementation(platform("com.google.firebase:firebase-bom:34.19.0")) --> implementation(platform("com.google.firebase:firebase-bom:33.1.0")) 
