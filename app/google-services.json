@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "227790233233",
+    "project_id": "whalefalls-casus",
+    "storage_bucket": "whalefalls-casus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227790233233:android:73d1f6d12ddc28e24c2930",
+        "android_client_info": {
+          "package_name": "com.example.whalefalls_casus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227790233233-oqva2gi0b3r4tphchvekfk1iub5cgsmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.whalefalls_casus",
+            "certificate_hash": "56f945497e46471aaff6c22a81a2124319a7b03b"
+          }
+        },
+        {
+          "client_id": "227790233233-rlqcdfna7bavs8n5vpls1487n6es0i19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJRzjjtHxSmA_ljpM6f-c80IiyZm0QNDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227790233233-rlqcdfna7bavs8n5vpls1487n6es0i19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
