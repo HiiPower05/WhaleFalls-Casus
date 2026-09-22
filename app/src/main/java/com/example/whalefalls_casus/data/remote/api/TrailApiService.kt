@@ -8,6 +8,7 @@ import retrofit2.http.Query
 
 interface TrailApiService {
 
+
     @GET("trails")
     suspend fun getTrails(): Response<List<TrailDto>>
 
