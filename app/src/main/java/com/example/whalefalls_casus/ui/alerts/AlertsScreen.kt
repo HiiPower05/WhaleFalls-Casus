@@ -1,7 +1,6 @@
 package com.example.whalefalls_casus.ui.alerts
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,6 +61,7 @@ import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.DeepGreen
 import com.example.whalefalls_casus.theme.SageGreen
 import com.example.whalefalls_casus.theme.SurfaceBorder
+import com.example.whalefalls_casus.theme.TextMuted
 import com.example.whalefalls_casus.theme.TextPrimary
 import com.example.whalefalls_casus.theme.TextSecondary
 import com.example.whalefalls_casus.ui.components.WhaleFallsTopAppBar

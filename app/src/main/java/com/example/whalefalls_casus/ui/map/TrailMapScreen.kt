@@ -63,6 +63,7 @@ import com.example.whalefalls_casus.theme.SageGreen
 import com.example.whalefalls_casus.theme.SurfaceBorder
 import com.example.whalefalls_casus.theme.TextPrimary
 import com.example.whalefalls_casus.theme.TextSecondary
+import com.example.whalefalls_casus.theme.TextMuted
 import com.example.whalefalls_casus.ui.components.WhaleFallsLogo
 
 @Composable
@@ -197,7 +198,7 @@ fun TrailMapScreen(
         Surface(
             shape = RoundedCornerShape(20.dp),
             color = CardSurface,
-            elevation = 4.dp,
+            shadowElevation = 4.dp,
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(start = 16.dp, bottom = 240.dp)
@@ -220,13 +221,13 @@ fun TrailMapScreen(
                 .padding(end = 16.dp, bottom = 240.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Surface(shape = CircleShape, color = DeepGreen, elevation = 4.dp, modifier = Modifier.size(38.dp)) {
+            Surface(shape = CircleShape, color = DeepGreen, shadowElevation = 4.dp, modifier = Modifier.size(38.dp)) {
                 Box(contentAlignment = Alignment.Center) {
                     Text(text = "N", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                 }
             }
 
-            Surface(shape = RoundedCornerShape(12.dp), color = CardSurface, elevation = 4.dp) {
+            Surface(shape = RoundedCornerShape(12.dp), color = CardSurface, shadowElevation = 4.dp) {
                 Column {
                     IconButton(onClick = { }, modifier = Modifier.size(38.dp)) {
                         Icon(imageVector = Icons.Default.Add, contentDescription = "Zoom In", tint = DeepGreen)
