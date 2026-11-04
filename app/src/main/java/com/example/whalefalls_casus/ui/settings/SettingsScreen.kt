@@ -1,5 +1,17 @@
 package com.example.whalefalls_casus.ui.settings
 
+// for unit measurement
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.saveable.rememberSaveable
+
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import com.example.whalefalls_casus.data.preferences.UserPreferences
+
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -99,21 +111,15 @@ import com.example.whalefalls_casus.theme.TextSecondary
 
 import com.example.whalefalls_casus.ui.components.WhaleFallsTopAppBar
 
-
+// Change for part 3. Measurement
 data class SettingsRowItem(
-
     val title: String,
-
     val subtitle: String? = null,
-
     val trailingValue: String? = null,
-
     val icon: ImageVector,
-
     val hasSwitch: Boolean = false,
-
-    val isSwitchOn: Boolean = false
-
+    val isSwitchOn: Boolean = false,
+    val onClick: () -> Unit = {}
 )
 
 
@@ -126,8 +132,30 @@ fun SettingsScreen(
     onSignOutClick: () -> Unit = {}
 
 ) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
-    var trackingEnabled by remember { mutableStateOf(true) }
+    val trackingEnabled by UserPreferences
+        .getTrackingEnabled(context)
+        .collectAsState(initial = true)
+
+    // Measurement for part 3
+
+    val selectedUnits by UserPreferences
+        .getUnits(context)
+        .collectAsState(initial = "Metric")
+
+    val selectedLanguage by UserPreferences
+        .getLanguage(context)
+        .collectAsState(initial = "English")
+
+    var showUnitsDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+    var showLanguageDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
 
 
 
@@ -140,6 +168,66 @@ fun SettingsScreen(
             .background(CreamBackground)
 
     ) {
+        // Measurements.
+        if (showUnitsDialog) {
+            AlertDialog(
+                onDismissRequest = { showUnitsDialog = false },
+                title = { Text("Select Units") },
+                text = {
+                    Column {
+                        listOf("Metric", "Imperial").forEach { unit ->
+                            TextButton(
+                                onClick = {
+                                    scope.launch {
+                                        UserPreferences.saveUnits(context, unit)
+                                    }
+                                    showUnitsDialog = false
+                                }
+                            ) {
+                                Text(
+                                    if (selectedUnits == unit)
+                                        "✓ $unit"
+                                    else unit
+                                )
+                            }
+                        }
+                    }
+                },
+                confirmButton = {}
+            )
+        }
+
+        if (showLanguageDialog) {
+            AlertDialog(
+                onDismissRequest = { showLanguageDialog = false },
+                title = { Text("Select Language") },
+                text = {
+                    Column {
+                        listOf(
+                            "English",
+                            "Afrikaans",
+                            "isiXhosa"
+                        ).forEach { language ->
+                            TextButton(
+                                onClick = {
+                                    scope.launch {
+                                        UserPreferences.saveLanguage(context, language)
+                                    }
+                                    showLanguageDialog = false
+                                }
+                            ) {
+                                Text(
+                                    if (selectedLanguage == language)
+                                        "✓ $language"
+                                    else language
+                                )
+                            }
+                        }
+                    }
+                },
+                confirmButton = {}
+            )
+        }
 
         WhaleFallsTopAppBar()
 
@@ -152,12 +240,11 @@ fun SettingsScreen(
             contentPadding = PaddingValues(bottom = 28.dp)
 
         ) {
-
 // Header
-
             item {
 
                 Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)) {
+
 
                     Text(
 
@@ -188,6 +275,7 @@ fun SettingsScreen(
                 }
 
             }
+
 
 
 // User Profile Card
@@ -292,11 +380,21 @@ fun SettingsScreen(
                     items = listOf(
 
                         SettingsRowItem(
-                            "Units", subtitle = "Metric (km, m, °C)", icon = Icons.Outlined.Map
+                            "Units",
+                            subtitle = selectedUnits,
+                            icon = Icons.Outlined.Map,
+                            onClick = {
+                                showUnitsDialog = true
+                            }
                         ),
 
                         SettingsRowItem(
-                            "Language", subtitle = "English", icon = Icons.Outlined.Language
+                            "Language",
+                            subtitle = selectedLanguage,
+                            icon = Icons.Outlined.Language,
+                            onClick = {
+                                showLanguageDialog = true
+                            }
                         ),
 
                         SettingsRowItem(
@@ -354,7 +452,11 @@ fun SettingsScreen(
 
                     ),
 
-                    onSwitchToggle = { trackingEnabled = it }
+                    onSwitchToggle = { enabled ->
+                        scope.launch {
+                            UserPreferences.saveTrackingEnabled(context, enabled)
+                        }
+                    }
 
                 )
 
@@ -532,8 +634,12 @@ fun SettingsGroup(
                         modifier = Modifier
 
                             .fillMaxWidth()
-
-                            .clickable { }
+                            // Changed. 04/11
+                            .clickable {
+                                if (!rowItem.hasSwitch) {
+                                    rowItem.onClick()
+                                }
+                            }
 
                             .padding(horizontal = 16.dp, vertical = 12.dp),
 

@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
 
+    // For settings
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+
     // Android Credential Manager dependencies
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
