@@ -54,6 +54,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 
 import androidx.compose.material3.OutlinedButton
 
@@ -149,6 +150,10 @@ fun SettingsScreen(
         .getLanguage(context)
         .collectAsState(initial = "English")
 
+    val darkTheme by UserPreferences
+        .getDarkTheme(context)
+        .collectAsState(initial = false)
+
     var showUnitsDialog by rememberSaveable {
         mutableStateOf(false)
     }
@@ -156,8 +161,42 @@ fun SettingsScreen(
     var showLanguageDialog by rememberSaveable {
         mutableStateOf(false)
     }
+    var showAppearanceDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
 
+    if (showAppearanceDialog) {
+        AlertDialog(
+            onDismissRequest = { showAppearanceDialog = false },
+            title = { Text("Appearance") },
+            text = {
+                Column {
+                    TextButton(
+                        onClick = {
+                            scope.launch {
+                                UserPreferences.saveDarkTheme(context, false)
+                            }
+                            showAppearanceDialog = false
+                        }
+                    ) {
+                        Text("Light mode")
+                    }
 
+                    TextButton(
+                        onClick = {
+                            scope.launch {
+                                UserPreferences.saveDarkTheme(context, true)
+                            }
+                            showAppearanceDialog = false
+                        }
+                    ) {
+                        Text("Dark mode")
+                    }
+                }
+            },
+            confirmButton = {}
+        )
+    }
 
     Column(
 
@@ -165,8 +204,7 @@ fun SettingsScreen(
 
             .fillMaxSize()
 
-            .background(CreamBackground)
-
+            .background(MaterialTheme.colorScheme.background)
     ) {
         // Measurements.
         if (showUnitsDialog) {
@@ -256,7 +294,7 @@ fun SettingsScreen(
 
                         fontSize = 28.sp,
 
-                        color = DeepGreen
+                        color = MaterialTheme.colorScheme.onBackground
 
                     )
 
@@ -268,7 +306,7 @@ fun SettingsScreen(
 
                         fontSize = 13.sp,
 
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
 
                     )
 
@@ -286,7 +324,9 @@ fun SettingsScreen(
 
                     shape = RoundedCornerShape(16.dp),
 
-                    colors = CardDefaults.cardColors(containerColor = CardSurface),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
 
                     border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceBorder),
 
@@ -340,7 +380,7 @@ fun SettingsScreen(
                                 fontFamily = FontFamily.Serif,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp,
-                                color = DeepGreen
+                                color = MaterialTheme.colorScheme.onSurface
                             )
 
                             Spacer(modifier = Modifier.height(2.dp))
@@ -348,7 +388,7 @@ fun SettingsScreen(
                             Text(
                                 text = "evan.roberts@example.com",
                                 fontSize = 12.sp,
-                                color = TextSecondary
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
 
                         }
@@ -358,7 +398,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
                             contentDescription = null,
-                            tint = SageGreen,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(14.dp)
                         )
 
@@ -416,7 +456,10 @@ fun SettingsScreen(
                         ),
 
                         SettingsRowItem(
-                            "Appearance", subtitle = "Light mode", icon = Icons.Outlined.DarkMode
+                            "Appearance",
+                            subtitle = if (darkTheme) "Dark mode" else "Light mode",
+                            icon = Icons.Outlined.DarkMode,
+                            onClick = { showAppearanceDialog = true }
                         )
 
                     )
@@ -605,7 +648,7 @@ fun SettingsGroup(
 
             fontSize = 14.sp,
 
-            color = DeepGreen,
+            color = MaterialTheme.colorScheme.onBackground,
 
             modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 16.dp, bottom = 6.dp)
 
@@ -617,7 +660,9 @@ fun SettingsGroup(
 
             shape = RoundedCornerShape(16.dp),
 
-            colors = CardDefaults.cardColors(containerColor = CardSurface),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            ),
 
             border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceBorder),
 
@@ -650,7 +695,7 @@ fun SettingsGroup(
                         Icon(
                             imageVector = rowItem.icon,
                             contentDescription = null,
-                            tint = DeepGreen,
+                            tint = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.size(20.dp)
                         )
 
@@ -664,7 +709,8 @@ fun SettingsGroup(
                                 text = rowItem.title,
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 14.sp,
-                                color = TextPrimary
+                                color = MaterialTheme.colorScheme.onSurface
+
                             )
 
                             if (rowItem.subtitle != null) {
@@ -672,7 +718,7 @@ fun SettingsGroup(
                                 Spacer(modifier = Modifier.height(2.dp))
 
                                 Text(
-                                    text = rowItem.subtitle, fontSize = 11.sp, color = TextSecondary
+                                    text = rowItem.subtitle, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
 
                             }
@@ -686,7 +732,7 @@ fun SettingsGroup(
                             Text(
                                 text = rowItem.trailingValue,
                                 fontSize = 11.sp,
-                                color = TextSecondary
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
 
                             Spacer(modifier = Modifier.width(8.dp))

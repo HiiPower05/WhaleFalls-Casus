@@ -1,6 +1,10 @@
 package com.example.whalefalls_casus
 
 import android.app.Activity
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import com.example.whalefalls_casus.data.preferences.UserPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -36,7 +40,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            WhaleFallsCasusTheme {
+            val context = LocalContext.current
+
+            val darkTheme by UserPreferences
+                .getDarkTheme(context)
+                .collectAsState(initial = false)
+
+            WhaleFallsCasusTheme(darkTheme = darkTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = CreamBackground

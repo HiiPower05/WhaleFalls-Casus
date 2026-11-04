@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import androidx.datastore.preferences.core.booleanPreferencesKey
+
 private val Context.dataStore by preferencesDataStore(
     name = "user_settings"
 )
@@ -16,6 +17,7 @@ object UserPreferences {
     private val UNITS = stringPreferencesKey("units")
     private val LANGUAGE = stringPreferencesKey("language")
     private val TRACKING_ENABLED = booleanPreferencesKey("tracking_enabled")
+    private val DARK_THEME = booleanPreferencesKey("dark_theme")
 
     fun getUnits(context: Context): Flow<String> {
         return context.dataStore.data.map { preferences ->
@@ -49,6 +51,17 @@ object UserPreferences {
     suspend fun saveTrackingEnabled(context: Context, enabled: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[TRACKING_ENABLED] = enabled
+        }
+    }
+    fun getDarkTheme(context: Context): Flow<Boolean> {
+        return context.dataStore.data.map { preferences ->
+            preferences[DARK_THEME] ?: false
+        }
+    }
+
+    suspend fun saveDarkTheme(context: Context, enabled: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[DARK_THEME] = enabled
         }
     }
 }
