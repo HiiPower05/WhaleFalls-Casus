@@ -68,6 +68,12 @@ import com.example.whalefalls_casus.theme.SurfaceBorder
 import com.example.whalefalls_casus.theme.TextPrimary
 import com.example.whalefalls_casus.theme.TextSecondary
 import com.example.whalefalls_casus.ui.components.WhaleFallsTopAppBar
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
+import com.example.whalefalls_casus.data.preferences.UserPreferences
 
 data class TrailCardItem(
     val id: String,
@@ -89,6 +95,12 @@ fun DiscoverScreen(
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("All Trails") }
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    val bookmarkedTrails by UserPreferences
+        .getBookmarkedTrails(context)
+        .collectAsState(initial = emptySet())
 
     val recommendedTrails = listOf(
         TrailCardItem(
@@ -299,6 +311,12 @@ fun DiscoverScreen(
                 items(filteredTrails) { trail ->
                     RecommendedTrailCard(
                         trail = trail,
+                        isBookmarked = trail.id in bookmarkedTrails,
+                        onBookmarkClick = {
+                            scope.launch {
+                                UserPreferences.toggleBookmark(context, trail.id)
+                            }
+                        },
                         onClick = { onTrailClick(trail.id) }
                     )
                 }
@@ -451,10 +469,10 @@ fun CategoryPill(
 @Composable
 fun RecommendedTrailCard(
     trail: TrailCardItem,
+    isBookmarked: Boolean,
+    onBookmarkClick: () -> Unit,
     onClick: () -> Unit
 ) {
-    var isBookmarked by remember { mutableStateOf(false) }
-
     Card(
         onClick = onClick,
         shape = RoundedCornerShape(16.dp),
@@ -507,7 +525,7 @@ fun RecommendedTrailCard(
                     modifier = Modifier
                         .padding(10.dp)
                         .align(Alignment.TopEnd)
-                        .clickable { isBookmarked = !isBookmarked }
+                        .clickable { onBookmarkClick() }
                 ) {
                     Icon(
                         imageVector = if (isBookmarked) Icons.Default.Bookmark else Icons.Default.BookmarkBorder,
