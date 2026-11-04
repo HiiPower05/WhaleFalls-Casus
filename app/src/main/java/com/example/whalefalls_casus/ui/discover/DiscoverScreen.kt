@@ -131,6 +131,18 @@ fun DiscoverScreen(
             bgGradient = listOf(Color(0xFF3A6073), Color(0xFF3A7BD5))
         )
     )
+    val filteredTrails = recommendedTrails.filter { trail ->
+        val matchesSearch =
+            searchQuery.isBlank() ||
+                    trail.name.contains(searchQuery, ignoreCase = true) ||
+                    trail.location.contains(searchQuery, ignoreCase = true)
+
+        val matchesCategory =
+            selectedCategory == "All Trails" ||
+                    trail.difficulty.equals(selectedCategory, ignoreCase = true)
+
+        matchesSearch && matchesCategory
+    }
 
     Column(
         modifier = Modifier
@@ -171,52 +183,60 @@ fun DiscoverScreen(
             }
 
             // Search Bar & Filter Button
-            Row(
+            // Search Bar
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                placeholder = {
+                    Text(
+                        "Search trails, places or regions...",
+                        fontSize = 13.sp
+                    )
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search",
+                        tint = SageGreen
+                    )
+                },
+                shape = RoundedCornerShape(12.dp),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = CardSurface,
+                    unfocusedContainerColor = CardSurface,
+                    focusedBorderColor = DeepGreen,
+                    unfocusedBorderColor = SurfaceBorder
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(horizontal = 20.dp, vertical = 8.dp)
+            )
+
+// Filters Button
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = CardSurface,
+                border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceBorder),
+                modifier = Modifier.padding(horizontal = 20.dp)
             ) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    placeholder = { Text("Search trails, places or regions...", fontSize = 13.sp) },
-                    leadingIcon = {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = SageGreen)
-                    },
-                    shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = CardSurface,
-                        unfocusedContainerColor = CardSurface,
-                        focusedBorderColor = DeepGreen,
-                        unfocusedBorderColor = SurfaceBorder
-                    ),
-                    modifier = Modifier.weight(1f)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = CardSurface,
-                    border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceBorder),
-                    modifier = Modifier.height(54.dp)
+                Row(
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .padding(horizontal = 14.dp)
-                            .fillMaxSize(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.FilterList,
-                            contentDescription = null,
-                            tint = DeepGreen,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Filters", fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = DeepGreen)
-                    }
+                    Icon(
+                        imageVector = Icons.Default.FilterList,
+                        contentDescription = null,
+                        tint = DeepGreen,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "Filters",
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = DeepGreen
+                    )
                 }
             }
 
@@ -276,12 +296,20 @@ fun DiscoverScreen(
                 contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(recommendedTrails) { trail ->
+                items(filteredTrails) { trail ->
                     RecommendedTrailCard(
                         trail = trail,
                         onClick = { onTrailClick(trail.id) }
                     )
                 }
+            }
+            if (filteredTrails.isEmpty()) {
+                Text(
+                    text = "No trails found. Try another search or difficulty.",
+                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                    fontSize = 13.sp,
+                    color = TextSecondary
+                )
             }
 
             Spacer(modifier = Modifier.height(20.dp))

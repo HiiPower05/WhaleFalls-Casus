@@ -11,7 +11,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 import com.example.whalefalls_casus.data.preferences.UserPreferences
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -122,7 +121,6 @@ data class SettingsRowItem(
     val isSwitchOn: Boolean = false,
     val onClick: () -> Unit = {}
 )
-
 
 @Composable
 
@@ -283,7 +281,6 @@ fun SettingsScreen(
 
                 Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)) {
 
-
                     Text(
 
                         text = "Settings",
@@ -313,8 +310,6 @@ fun SettingsScreen(
                 }
 
             }
-
-
 
 // User Profile Card
 
@@ -357,7 +352,13 @@ fun SettingsScreen(
                             Box(contentAlignment = Alignment.Center) {
 
                                 Text(
-                                    text = "ER",
+                                    text = user.fullName
+                                        .split(" ")
+                                        .mapNotNull { it.firstOrNull()?.toString() }
+                                        .take(2)
+                                        .joinToString("")
+                                        .uppercase()
+                                        .ifBlank { "U" },
                                     color = Color.White,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 18.sp
@@ -376,7 +377,7 @@ fun SettingsScreen(
                         Column(modifier = Modifier.weight(1f)) {
 
                             Text(
-                                text = "Evan Roberts",
+                                text = user.fullName.ifBlank { "User" },
                                 fontFamily = FontFamily.Serif,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp,
@@ -386,7 +387,7 @@ fun SettingsScreen(
                             Spacer(modifier = Modifier.height(2.dp))
 
                             Text(
-                                text = "evan.roberts@example.com",
+                                text = user.email.ifBlank { "No email available" },
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -407,7 +408,6 @@ fun SettingsScreen(
                 }
 
             }
-
 
 // Section 1: Preferences
 
@@ -468,7 +468,6 @@ fun SettingsScreen(
 
             }
 
-
 // Section 2: Safety & Tracking
 
             item {
@@ -505,7 +504,6 @@ fun SettingsScreen(
 
             }
 
-
 // Section 3: Account & Data
 
             item {
@@ -541,7 +539,6 @@ fun SettingsScreen(
 
             }
 
-
 // Section 4: About
 
             item {
@@ -567,7 +564,6 @@ fun SettingsScreen(
                 )
 
             }
-
 
 // Sign Out Button
 
@@ -622,7 +618,6 @@ fun SettingsScreen(
     }
 
 }
-
 
 @Composable
 
@@ -718,7 +713,9 @@ fun SettingsGroup(
                                 Spacer(modifier = Modifier.height(2.dp))
 
                                 Text(
-                                    text = rowItem.subtitle, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    text = rowItem.subtitle,
+                                    fontSize = 11.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
 
                             }
