@@ -145,8 +145,7 @@ All screenshots are organised in the screenshots directory.
 
 <img width="395" height="860" alt="WhatsApp Image 2026-11-05 at 6 45 28 PM" src="https://github.com/user-attachments/assets/cf08ab83-30d6-4be1-983d-2ff8a76a62ce" />
 
-## Signed APK
-<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/838d84c3-f508-43d8-98ce-6dc150c7f48e" />
+<img width="1907" height="862" alt="image" src="https://github.com/user-attachments/assets/197f288f-c176-4088-a278-4f1e30ebfa0a" />
 
 
 ## 9. Video Presentation
@@ -175,6 +174,8 @@ The following evidence is included as part of the final submission:
 - Screenshots of the completed application.
 - Evidence of application testing.
 - Screenshot of the application uploaded to Google Play Console or published on the Google Play Store, where applicable.
+- ## Signed APK
+<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/838d84c3-f508-43d8-98ce-6dc150c7f48e" />
 
 These materials demonstrate the application's preparation for publication and distribution.
 
