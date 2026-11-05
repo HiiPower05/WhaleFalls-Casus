@@ -113,6 +113,36 @@ The screenshots include the main application interface, important functionality,
 
 All screenshots are organised in the screenshots directory.
 
+<img width="400" height="862" alt="WhatsApp Image 2026-11-05 at 6 45 24 PM" src="https://github.com/user-attachments/assets/c15ac78d-a67f-47d3-8816-5c6620ae2035" />
+
+<img width="410" height="867" alt="WhatsApp Image 2026-11-05 at 6 45 24 PM (1)" src="https://github.com/user-attachments/assets/0285cc21-a86f-4fc7-b5c0-a9193a1c92a5" />
+
+<img width="401" height="862" alt="WhatsApp Image 2026-11-05 at 6 45 25 PM" src="https://github.com/user-attachments/assets/eb6a9ed0-2964-489b-84a4-b8c4f1cc424d" />
+
+<img width="405" height="855" alt="WhatsApp Image 2026-11-05 at 6 45 26 PM (1)" src="https://github.com/user-attachments/assets/8964c77e-7c8a-4465-862e-d218731c905a" />
+
+<img width="411" height="867" alt="WhatsApp Image 2026-11-05 at 6 45 25 PM (2)" src="https://github.com/user-attachments/assets/dc4b9abe-3a90-4d8a-b307-55d7904e2998" />
+
+<img width="396" height="868" alt="WhatsApp Image 2026-11-05 at 6 45 25 PM (3)" src="https://github.com/user-attachments/assets/fd21f764-508f-41c3-9cbc-b53889f25321" />
+
+<img width="396" height="868" alt="WhatsApp Image 2026-11-05 at 6 45 25 PM (3)" src="https://github.com/user-attachments/assets/24c11b45-35e0-4890-a543-2ce0207a25e4" />
+
+<img width="416" height="865" alt="WhatsApp Image 2026-11-05 at 6 45 26 PM" src="https://github.com/user-attachments/assets/f0d850e0-8833-4162-9e1d-dc7abf7a7310" />
+
+<img width="405" height="865" alt="WhatsApp Image 2026-11-05 at 6 45 26 PM (2)" src="https://github.com/user-attachments/assets/81d578f7-882f-4f50-b506-630ea16e62f0" />
+
+<img width="405" height="861" alt="WhatsApp Image 2026-11-05 at 6 45 27 PM" src="https://github.com/user-attachments/assets/58e32826-73fe-4383-82ba-42c250e7a46f" />
+
+<img width="401" height="873" alt="WhatsApp Image 2026-11-05 at 6 45 27 PM (1)" src="https://github.com/user-attachments/assets/d20bffe6-1925-4ffd-9326-11eb483c820b" />
+
+<img width="400" height="865" alt="WhatsApp Image 2026-11-05 at 6 45 27 PM (2)" src="https://github.com/user-attachments/assets/ceb005e2-e32d-4322-ba7c-2027bc5374b4" />
+
+
+<img width="397" height="867" alt="WhatsApp Image 2026-11-05 at 6 45 27 PM (3)" src="https://github.com/user-attachments/assets/8332a717-6c4c-498d-a3b4-9087dd451268" />
+
+
+<img width="395" height="860" alt="WhatsApp Image 2026-11-05 at 6 45 28 PM" src="https://github.com/user-attachments/assets/cf08ab83-30d6-4be1-983d-2ff8a76a62ce" />
+
 ## 9. Video Presentation
 
 A video presentation demonstrating the completed application is provided below.
