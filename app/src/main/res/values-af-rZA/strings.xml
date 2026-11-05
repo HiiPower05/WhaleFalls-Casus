@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WhaleFalls Casus</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_discover">Ontdek</string>
+    <string name="nav_saved">Gestoor</string>
+    <string name="nav_alerts">Waarskuwings</string>
+    <string name="nav_contacts">Kontakte</string>
+    <string name="nav_settings">Instellings</string>
+
+    <!-- Discover Screen -->
+    <string name="discover_greeting">Goeiemôre, Ontdekker</string>
+    <string name="discover_subtitle">Waarheen sal jou volgende avontuur jou neem?</string>
+    <string name="discover_search_hint">Soek roetes, plekke of streke...</string>
+    <string name="discover_filters">Filters</string>
+    <string name="discover_cat_all">Alle roetes</string>
+    <string name="discover_cat_easy">Maklik</string>
+    <string name="discover_cat_moderate">Matig</string>
+    <string name="discover_cat_difficult">Moeilik</string>
+    <string name="discover_cat_more">Meer</string>
+    <string name="discover_sec_recommended">Aanbeveel vir jou</string>
+    <string name="discover_sec_regions">Gewilde streke</string>
+    <string name="discover_sec_recently_viewed">Onlangs bekyk</string>
+    <string name="discover_view_all">Sien alles</string>
+    <string name="discover_no_trails">Geen roetes gevind nie. Probeer \'n ander soektog of moeilikheidsgraad.</string>
+
+    <!-- Saved Trails Screen -->
+    <string name="saved_title">Gestoorde roetes</string>
+    <string name="saved_subtitle">Al jou gestoorde roetes op een plek.</string>
+    <string name="saved_filter_all">Alles</string>
+    <string name="saved_filter_downloaded">Afgelaai</string>
+    <string name="saved_filter_favorites">Gunstelinge</string>
+    <string name="saved_filter_completed">Voltooi</string>
+    <string name="saved_search_hint">Soek gestoorde roetes...</string>
+    <string name="saved_sort_by">Sorteer volgens</string>
+    <string name="saved_access_anywhere">Kry enige plek toegang tot jou roetes</string>
+    <string name="saved_offline_desc">Afgelaaide roetes is vanlyn beskikbaar, selfs sonder sein.</string>
+    <string name="saved_manage_downloads">Bestuur aflaaie</string>
+    <string name="saved_downloaded_badge">AFGELAAI</string>
+
+    <!-- Alerts Screen -->
+    <string name="alerts_title">Waarskuwings</string>
+    <string name="alerts_subtitle">Bly ingelig oor roetetoestande, weer en sluitings.</string>
+    <string name="alerts_settings">Waarskuwinginstellings</string>
+    <string name="alerts_filter_all">Alle waarskuwings</string>
+    <string name="alerts_filter_conditions">Roetetoestande</string>
+    <string name="alerts_filter_weather">Weer</string>
+    <string name="alerts_filter_closures">Sluitings</string>
+    <string name="alerts_high_priority">Hoë prioriteit</string>
+    <string name="alerts_recent_alerts">Onlangse waarskuwings</string>
+    <string name="alerts_enable_location_title">Aktiveer liggingwaarskuwings</string>
+    <string name="alerts_enable_location_desc">Ontvang intydse waarskuwings oor roetes en toestande naby jou huidige ligging.</string>
+    <string name="alerts_enable_location_btn">Aktiveer ligging</string>
+
+    <!-- Emergency Contacts Screen -->
+    <string name="contacts_title">Noodkontakte</string>
+    <string name="contacts_subtitle">Bestuur jou noodkontakte en belangrike nommers.</string>
+    <string name="contacts_add_button">+ Voeg kontak by</string>
+    <string name="contacts_quick_actions">Vinnige noodaksies</string>
+    <string name="contacts_call_112">Bel nooddienste</string>
+    <string name="contacts_call_112_sub">Polisie · Ambulans · Brandweer</string>
+    <string name="contacts_share_location">Deel my ligging</string>
+    <string name="contacts_share_location_sub">Stuur jou ligging aan noodkontakte</string>
+    <string name="contacts_my_contacts">My noodkontakte</string>
+    <string name="contacts_other_numbers">Ander belangrike nommers</string>
+    <string name="contacts_stay_safe_title">Bly veilig</string>
+    <string name="contacts_stay_safe_desc">Laat weet altyd iemand van jou stapplanne en verwagte terugkeertyd. Hou jou foon gelaai en dra \'n kragbank saam.</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Instellings</string>
+    <string name="settings_subtitle">Bestuur jou voorkeure en toepassinginstellings.</string>
+    <string name="settings_group_preferences">Voorkeure</string>
+    <string name="settings_row_units">Meeteenhede</string>
+    <string name="settings_row_language">Taal</string>
+    <string name="settings_row_location_permissions">Ligging en toestemmings</string>
+    <string name="settings_row_location_sub">Bestuur liggingtoegang en toestemmings</string>
+    <string name="settings_row_notifications">Kennisgewings</string>
+    <string name="settings_row_notifications_sub">Bestuur waarskuwings en kennisgewings</string>
+    <string name="settings_row_offline_maps">Vanlyn kaarte</string>
+    <string name="settings_row_offline_maps_sub">Bestuur afgelaaide kaarte</string>
+    <string name="settings_row_appearance">Voorkoms</string>
+    <string name="settings_mode_light">Ligte modus</string>
+    <string name="settings_mode_dark">Donker modus</string>
+    <string name="settings_group_safety">Veiligheid en nasporing</string>
+    <string name="settings_row_safety_features">Veiligheidskenmerke</string>
+    <string name="settings_row_safety_sub">Liggingdeling, noodgevalle en veiligheidsinstellings</string>
+    <string name="settings_row_activity_tracking">Aktiwiteitsnasporing</string>
+    <string name="settings_row_tracking_sub">Bestuur nasporingsvoorkeure</string>
+    <string name="settings_group_account">Rekening en data</string>
+    <string name="settings_row_account">Rekeninginstellings</string>
+    <string name="settings_row_account_sub">Werk jou rekeninginligting by</string>
+    <string name="settings_row_backup">Rugsteun en herstel</string>
+    <string name="settings_row_backup_sub">Rugsteun of herstel jou data</string>
+    <string name="settings_row_clear_cache">Vee kasgeheue uit</string>
+    <string name="settings_row_cache_sub">Maak stoorspasie beskikbaar</string>
+    <string name="settings_group_about">Meer oor</string>
+    <string name="settings_row_about_app">Meer oor WhaleFalls CASUS</string>
+    <string name="settings_row_terms">Diensvoorwaardes</string>
+    <string name="settings_row_privacy">Privaatheidsbeleid</string>
+    <string name="settings_sign_out">Teken uit</string>
+
+    <!-- Auth Screens -->
+    <string name="auth_welcome_back">Welkom terug</string>
+    <string name="auth_signin_sub">Meld aan om jou avontuur voort te sit</string>
+    <string name="auth_login_btn">Meld aan</string>
+    <string name="auth_create_account">Skep rekening</string>
+    <string name="auth_signup_sub">Sluit by WhaleFalls-Casus aan en begin jou volgende avontuur.</string>
+    <string name="auth_full_name">Volle naam</string>
+    <string name="auth_full_name_hint">Voer jou volle naam in</string>
+    <string name="auth_email">E-posadres</string>
+    <string name="auth_email_hint">Voer jou e-posadres in</string>
+    <string name="auth_password">Wagwoord</string>
+    <string name="auth_create_password_hint">Skep \'n wagwoord</string>
+    <string name="auth_enter_password_hint">Voer jou wagwoord in</string>
+    <string name="auth_confirm_password">Bevestig wagwoord</string>
+    <string name="auth_confirm_password_hint">Bevestig jou wagwoord</string>
+    <string name="auth_pwd_rule">Minstens 8 karakters met \'n nommer en simbool</string>
+    <string name="auth_agree_terms">Ek stem in tot die</string>
+    <string name="auth_terms_link">Diensvoorwaardes</string>
+    <string name="auth_and">en</string>
+    <string name="auth_privacy_link">Privaatheidsbeleid</string>
+    <string name="auth_or">OF</string>
+    <string name="auth_google_signup">Registreer met Google</string>
+    <string name="auth_google_continue">Gaan voort met Google</string>
+    <string name="auth_already_have_acc">Het jy reeds \'n rekening?</string>
+    <string name="auth_dont_have_acc">Het jy nie \'n rekening nie?</string>
+    <string name="auth_signup_link">Registreer</string>
+
+    <!-- Trail Detail & Map -->
+    <string name="detail_distance">AFSTAND</string>
+    <string name="detail_time">TYD</string>
+    <string name="detail_elevation">HOOGTETOENAME</string>
+    <string name="detail_difficulty">MOEILIKHEIDSGRAAD</string>
+    <string name="detail_elevation_profile">Hoogteprofiel</string>
+    <string name="detail_view_on_map">Bekyk op kaart</string>
+    <string name="detail_trail_highlights">Roetehoogtepunte</string>
+    <string name="detail_trail_conditions">Roetetoestande</string>
+    <string name="detail_download_offline">Laai af vir vanlyn gebruik</string>
+    <string name="detail_start_navigation">Begin navigasie</string>
+    <string name="map_recenter">Sentreer weer</string>
+    <string name="map_download_map">Laai kaart af</string>
+    <string name="map_start_tracking">Begin nasporing</string>
+    <string name="map_pause_tracking">Laat nasporing wag</string>
+    <string name="map_time_elapsed">VERSTREKE TYD</string>
+    <string name="map_avg_pace">GEMIDDELDE TEMPO</string>
+</resources>

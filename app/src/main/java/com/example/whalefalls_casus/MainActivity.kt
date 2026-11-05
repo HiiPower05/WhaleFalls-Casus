@@ -1,17 +1,24 @@
+
 package com.example.whalefalls_casus
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.compose.LocalActivityResultRegistryOwner
 import android.widget.Toast
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.credentials.CredentialManager
@@ -19,28 +26,28 @@ import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
+import androidx.core.content.ContextCompat
 import com.example.whalefalls_casus.data.preferences.UserPreferences
 import com.example.whalefalls_casus.navigation.AppNavigation
 import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.WhaleFallsCasusTheme
+import com.example.whalefalls_casus.util.LocaleHelper
 import com.example.whalefalls_casus.viewmodel.UserViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
-import kotlinx.coroutines.launch
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.launch
+
 class MainActivity : ComponentActivity() {
 
     private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         askNotificationPermission()
+
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.e("FCM", "Failed to retrieve FCM token", task.exception)
@@ -50,7 +57,9 @@ class MainActivity : ComponentActivity() {
             val token = task.result
             Log.d("FCM", "Device FCM Token: $token")
         }
+
         enableEdgeToEdge()
+
         setContent {
             val context = LocalContext.current
 
@@ -62,6 +71,14 @@ class MainActivity : ComponentActivity() {
                 .getDarkTheme(context)
                 .collectAsState(initial = false)
 
+            val localizedContext = remember(selectedLanguage) {
+                LocaleHelper.applyLocale(context, selectedLanguage)
+            }
+
+            CompositionLocalProvider(
+                LocalContext provides localizedContext,
+                LocalActivityResultRegistryOwner provides this@MainActivity
+            ) {
                 WhaleFallsCasusTheme(darkTheme = darkTheme) {
                     Surface(
                         modifier = Modifier.fillMaxSize(),
@@ -76,8 +93,9 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-
+        }
     }
+
     private val requestNotificationPermission =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -88,6 +106,7 @@ class MainActivity : ComponentActivity() {
                 Log.d("FCM", "Notification permission denied")
             }
         }
+
     private fun askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (
@@ -102,9 +121,11 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-    // --- Credential Manager Google Sign-In Logic ---
+
+    // Google Sign-In
     private fun triggerGoogleSignIn() {
-        val rawClientId = "227790233233-rlqcdfna7bavs8n5vpls1487n6es0i19.apps.googleusercontent.com"
+        val rawClientId =
+            "227790233233-rlqcdfna7bavs8n5vpls1487n6es0i19.apps.googleusercontent.com"
 
         val googleIdOption = GetGoogleIdOption.Builder()
             .setServerClientId(rawClientId)
@@ -124,11 +145,16 @@ class MainActivity : ComponentActivity() {
                     request = request,
                     context = this@MainActivity
                 )
+
                 val credential = result.credential
 
-                if (credential is CustomCredential && credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                if (
+                    credential is CustomCredential &&
+                    credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+                ) {
                     val googleIdTokenCredential =
                         GoogleIdTokenCredential.createFrom(credential.data)
+
                     val googleIdToken = googleIdTokenCredential.idToken
 
                     userViewModel.signInWithGoogleCredential(googleIdToken) { success, error ->
@@ -151,6 +177,7 @@ class MainActivity : ComponentActivity() {
                 }
             } catch (e: GetCredentialException) {
                 Log.e("Auth", "Sign-in failed or cancelled: ${e.message}", e)
+
                 Toast.makeText(
                     this@MainActivity,
                     "Sign-in failed: ${e.localizedMessage}",

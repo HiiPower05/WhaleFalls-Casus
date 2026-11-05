@@ -90,9 +90,15 @@ dependencies {
     // DataStore for App Settings
     implementation(libs.androidx.datastore.preferences)
 
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // OpenStreetMap rendering
+    implementation("org.maplibre.gl:android-sdk:13.6.1")
     // Material Icons
     implementation(libs.androidx.compose.material.icons.extended)
 
+    implementation("org.maplibre.gl:android-sdk:13.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.0")
 // Local Storage (Room)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

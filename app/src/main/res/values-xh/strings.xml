@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WhaleFalls Casus</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_discover">Fumanisa</string>
+    <string name="nav_saved">Ezigciniweyo</string>
+    <string name="nav_alerts">Izilumkiso</string>
+    <string name="nav_contacts">Abafowunelwa</string>
+    <string name="nav_settings">Iisetingi</string>
+
+    <!-- Discover Screen -->
+    <string name="discover_greeting">Molo kusasa, Mhloli</string>
+    <string name="discover_subtitle">Liza kukusa phi uhambo lwakho olulandelayo?</string>
+    <string name="discover_search_hint">Khangela iindlela, iindawo okanye imimandla...</string>
+    <string name="discover_filters">Izihluzi</string>
+    <string name="discover_cat_all">Zonke iindlela</string>
+    <string name="discover_cat_easy">Kulula</string>
+    <string name="discover_cat_moderate">Kuphakathi</string>
+    <string name="discover_cat_difficult">Kunzima</string>
+    <string name="discover_cat_more">Okungakumbi</string>
+    <string name="discover_sec_recommended">Sicebisa ezi kuwe</string>
+    <string name="discover_sec_regions">Imimandla edumileyo</string>
+    <string name="discover_sec_recently_viewed">Ezisandula ukujongwa</string>
+    <string name="discover_view_all">Jonga zonke</string>
+    <string name="discover_no_trails">Akukho ndlela zifunyenweyo. Zama olunye uphendlo okanye inqanaba lobunzima.</string>
+
+    <!-- Saved Trails Screen -->
+    <string name="saved_title">Iindlela ezigciniweyo</string>
+    <string name="saved_subtitle">Iindlela zakho ezigciniweyo kunye neendlela zokuhamba, zonke kwindawo enye.</string>
+    <string name="saved_filter_all">Zonke</string>
+    <string name="saved_filter_downloaded">Ezikhutshelweyo</string>
+    <string name="saved_filter_favorites">Ezithandwayo</string>
+    <string name="saved_filter_completed">Ezigqityiweyo</string>
+    <string name="saved_search_hint">Khangela iindlela ezigciniweyo...</string>
+    <string name="saved_sort_by">Hlela ngokwe</string>
+    <string name="saved_access_anywhere">Fikelela kwiindlela zakho naphi na</string>
+    <string name="saved_offline_desc">Iindlela ezikhutshelweyo ziyafumaneka ngaphandle kwe-intanethi, nokuba akukho mqondiso womnxeba.</string>
+    <string name="saved_manage_downloads">Lawula izinto ezikhutshelweyo</string>
+    <string name="saved_downloaded_badge">IKHUTSHELWE</string>
+
+    <!-- Alerts Screen -->
+    <string name="alerts_title">Izilumkiso</string>
+    <string name="alerts_subtitle">Hlala unolwazi ngeemeko zeendlela, imozulu kunye nokuvalwa kweendlela.</string>
+    <string name="alerts_settings">Iisetingi zezaziso</string>
+    <string name="alerts_filter_all">Zonke izilumkiso</string>
+    <string name="alerts_filter_conditions">Iimeko zeendlela</string>
+    <string name="alerts_filter_weather">Imozulu</string>
+    <string name="alerts_filter_closures">Ukuvalwa kweendlela</string>
+    <string name="alerts_high_priority">Ezibaluleke kakhulu</string>
+    <string name="alerts_recent_alerts">Izilumkiso zamva nje</string>
+    <string name="alerts_enable_location_title">Vula izilumkiso zendawo</string>
+    <string name="alerts_enable_location_desc">Fumana izilumkiso zexesha langempela malunga neendlela neemeko ezikufutshane nendawo okuyo ngoku.</string>
+    <string name="alerts_enable_location_btn">Vula indawo okuyo</string>
+
+    <!-- Emergency Contacts Screen -->
+    <string name="contacts_title">Abafowunelwa bexesha likaxakeka</string>
+    <string name="contacts_subtitle">Lawula abafowunelwa bakho bexesha likaxakeka kunye neenombolo zokufowuna ngokukhawuleza.</string>
+    <string name="contacts_add_button">+ Yongeza umfowunelwa</string>
+    <string name="contacts_quick_actions">Amanyathelo akhawulezayo xa kukho imeko kaxakeka</string>
+    <string name="contacts_call_112">Fowunela iinkonzo zikaxakeka</string>
+    <string name="contacts_call_112_sub">Amapolisa · I-ambulensi · Abacimi-mlilo</string>
+    <string name="contacts_share_location">Yabelana ngendawo endikuyo</string>
+    <string name="contacts_share_location_sub">Thumela indawo okuyo kubafowunelwa bakho bexesha likaxakeka</string>
+    <string name="contacts_my_contacts">Abafowunelwa bam bexesha likaxakeka</string>
+    <string name="contacts_other_numbers">Ezinye iinombolo ezibalulekileyo</string>
+    <string name="contacts_stay_safe_title">Hlala ukhuselekile</string>
+    <string name="contacts_stay_safe_desc">Hlala uxelela umntu ngezicwangciso zakho zokunyuka intaba kunye nexesha olindele ukubuya ngalo. Gcina ifowuni yakho itshajiwe kwaye uphathe ibhetri eyongezelelweyo.</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Iisetingi</string>
+    <string name="settings_subtitle">Lawula izinto ozikhethayo kunye neesetingi ze-app.</string>
+    <string name="settings_group_preferences">Izinto ozikhethayo</string>
+    <string name="settings_row_units">Iiyunithi zokulinganisa</string>
+    <string name="settings_row_language">Ulwimi</string>
+    <string name="settings_row_location_permissions">Indawo kunye neemvume</string>
+    <string name="settings_row_location_sub">Lawula ukufikelela kwindawo kunye neemvume</string>
+    <string name="settings_row_notifications">Izaziso</string>
+    <string name="settings_row_notifications_sub">Lawula izilumkiso kunye nezaziso ozikhethayo</string>
+    <string name="settings_row_offline_maps">Iimephu ezingadingi intanethi</string>
+    <string name="settings_row_offline_maps_sub">Lawula iimephu ezikhutshelweyo</string>
+    <string name="settings_row_appearance">Inkangeleko</string>
+    <string name="settings_mode_light">Imo ekhanyayo</string>
+    <string name="settings_mode_dark">Imo emnyama</string>
+    <string name="settings_group_safety">Ukhuseleko kunye nokulandelela</string>
+    <string name="settings_row_safety_features">Iimpawu zokhuseleko</string>
+    <string name="settings_row_safety_sub">Ukwabelana ngendawo, uncedo lukaxakeka kunye neesetingi zokhuseleko</string>
+    <string name="settings_row_activity_tracking">Ukulandelela imisebenzi</string>
+    <string name="settings_row_tracking_sub">Lawula izinto ozikhethayo malunga nokulandelela</string>
+    <string name="settings_group_account">Iakhawunti kunye nedatha</string>
+    <string name="settings_row_account">Iisetingi zeakhawunti</string>
+    <string name="settings_row_account_sub">Hlaziya iinkcukacha zeakhawunti yakho</string>
+    <string name="settings_row_backup">Ugcino kunye nokubuyisela</string>
+    <string name="settings_row_backup_sub">Gcina okanye buyisela idatha yakho</string>
+    <string name="settings_row_clear_cache">Cima idatha yethutyana</string>
+    <string name="settings_row_cache_sub">Khulula indawo yokugcina</string>
+    <string name="settings_group_about">Malunga</string>
+    <string name="settings_row_about_app">Malunga neWhaleFalls CASUS</string>
+    <string name="settings_row_terms">Imiqathango yokusebenzisa</string>
+    <string name="settings_row_privacy">Umgaqo-nkqubo wabucala</string>
+    <string name="settings_sign_out">Phuma</string>
+
+    <!-- Auth Screens -->
+    <string name="auth_welcome_back">Wamkelekile kwakhona</string>
+    <string name="auth_signin_sub">Ngena ukuze uqhubeke nohambo lwakho</string>
+    <string name="auth_login_btn">Ngena</string>
+    <string name="auth_create_account">Yenza iakhawunti</string>
+    <string name="auth_signup_sub">Joyina iWhaleFalls-Casus uze uqalise uhambo lwakho olulandelayo.</string>
+    <string name="auth_full_name">Amagama apheleleyo</string>
+    <string name="auth_full_name_hint">Faka amagama akho apheleleyo</string>
+    <string name="auth_email">I-imeyile</string>
+    <string name="auth_email_hint">Faka idilesi yakho ye-imeyile</string>
+    <string name="auth_password">Igama lokugqitha</string>
+    <string name="auth_create_password_hint">Yenza igama lokugqitha</string>
+    <string name="auth_enter_password_hint">Faka igama lakho lokugqitha</string>
+    <string name="auth_confirm_password">Qinisekisa igama lokugqitha</string>
+    <string name="auth_confirm_password_hint">Qinisekisa igama lakho lokugqitha</string>
+    <string name="auth_pwd_rule">Ubuncinane oonobumba abasi-8, nenani kunye nesimboli</string>
+    <string name="auth_agree_terms">Ndiyavumelana ne-</string>
+    <string name="auth_terms_link">Miqathango yokusebenzisa</string>
+    <string name="auth_and">kunye</string>
+    <string name="auth_privacy_link">Nomgaqo-nkqubo wabucala</string>
+    <string name="auth_or">OKANYE</string>
+    <string name="auth_google_signup">Bhalisa ngeGoogle</string>
+    <string name="auth_google_continue">Qhubeka ngeGoogle</string>
+    <string name="auth_already_have_acc">Sele unayo iakhawunti?</string>
+    <string name="auth_dont_have_acc">Awunayo iakhawunti?</string>
+    <string name="auth_signup_link">Bhalisa</string>
+
+    <!-- Trail Detail & Map -->
+    <string name="detail_distance">UMGAMA</string>
+    <string name="detail_time">IXESHA</string>
+    <string name="detail_elevation">UKUNYUKA KOMPHAMO</string>
+    <string name="detail_difficulty">UBUNZIMA</string>
+    <string name="detail_elevation_profile">Iprofayile yomphakamo</string>
+    <string name="detail_view_on_map">Jonga kwimephu</string>
+    <string name="detail_trail_highlights">Iindawo ezibalulekileyo zendlela</string>
+    <string name="detail_trail_conditions">Iimeko zendlela</string>
+    <string name="detail_download_offline">Khuphela ukuze usebenzise ngaphandle kwe-intanethi</string>
+    <string name="detail_start_navigation">Qalisa ukukhokelwa yimephu</string>
+    <string name="map_recenter">Buyisela embindini</string>
+    <string name="map_download_map">Khuphela imephu</string>
+    <string name="map_start_tracking">Qalisa ukulandelela</string>
+    <string name="map_pause_tracking">Misa okwethutyana ukulandelela</string>
+    <string name="map_time_elapsed">IXESHA ELIDLULILEYO</string>
+    <string name="map_avg_pace">ISANTYA ESIPHakathi</string>
+</resources>

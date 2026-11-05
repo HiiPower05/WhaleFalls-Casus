@@ -1,6 +1,8 @@
 package com.example.whalefalls_casus.ui.discover
 
 import com.example.whalefalls_casus.data.local.entity.TrailEntity
+import androidx.compose.material.icons.filled.CloudDownload
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
