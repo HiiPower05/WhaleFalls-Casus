@@ -20,10 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Park
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Thunderstorm
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Park
 import androidx.compose.material.icons.outlined.Thunderstorm
@@ -44,10 +41,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whalefalls_casus.R
 import com.example.whalefalls_casus.theme.AlertAmberBg
 import com.example.whalefalls_casus.theme.AlertAmberText
 import com.example.whalefalls_casus.theme.AlertBlueBg
@@ -92,7 +91,7 @@ fun AlertsScreen() {
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Alerts",
+                            text = stringResource(R.string.alerts_title),
                             fontFamily = FontFamily.Serif,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -100,7 +99,7 @@ fun AlertsScreen() {
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Stay informed about trail conditions, weather, and closures.",
+                            text = stringResource(R.string.alerts_subtitle),
                             fontSize = 13.sp,
                             color = TextSecondary
                         )
@@ -119,7 +118,7 @@ fun AlertsScreen() {
                         ) {
                             Icon(imageVector = Icons.Default.Settings, contentDescription = null, tint = DeepGreen, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text(text = "Alert Settings", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = DeepGreen)
+                            Text(text = stringResource(R.string.alerts_settings), fontSize = 11.sp, fontWeight = FontWeight.Bold, color = DeepGreen)
                         }
                     }
                 }
@@ -131,10 +130,10 @@ fun AlertsScreen() {
                     contentPadding = PaddingValues(horizontal = 20.dp, vertical = 6.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    item { AlertFilterPill("All Alerts", count = "12", isSelected = selectedFilter == "All", onClick = { selectedFilter = "All" }) }
-                    item { AlertFilterPill("Trail Conditions", count = "6", isSelected = selectedFilter == "Trail", onClick = { selectedFilter = "Trail" }) }
-                    item { AlertFilterPill("Weather", count = "4", isSelected = selectedFilter == "Weather", onClick = { selectedFilter = "Weather" }) }
-                    item { AlertFilterPill("Closures", count = "2", isSelected = selectedFilter == "Closures", onClick = { selectedFilter = "Closures" }) }
+                    item { AlertFilterPill(stringResource(R.string.alerts_filter_all), count = "12", isSelected = selectedFilter == "All", onClick = { selectedFilter = "All" }) }
+                    item { AlertFilterPill(stringResource(R.string.alerts_filter_conditions), count = "6", isSelected = selectedFilter == "Trail", onClick = { selectedFilter = "Trail" }) }
+                    item { AlertFilterPill(stringResource(R.string.alerts_filter_weather), count = "4", isSelected = selectedFilter == "Weather", onClick = { selectedFilter = "Weather" }) }
+                    item { AlertFilterPill(stringResource(R.string.alerts_filter_closures), count = "2", isSelected = selectedFilter == "Closures", onClick = { selectedFilter = "Closures" }) }
                 }
             }
 
@@ -142,7 +141,7 @@ fun AlertsScreen() {
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "High Priority",
+                    text = stringResource(R.string.alerts_high_priority),
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
@@ -185,7 +184,7 @@ fun AlertsScreen() {
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Recent Alerts",
+                    text = stringResource(R.string.alerts_recent_alerts),
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
@@ -264,9 +263,9 @@ fun AlertsScreen() {
                         Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(text = "Enable Location Alerts", fontWeight = FontWeight.Bold, fontSize = 13.sp, color = DeepGreen)
+                            Text(text = stringResource(R.string.alerts_enable_location_title), fontWeight = FontWeight.Bold, fontSize = 13.sp, color = DeepGreen)
                             Spacer(modifier = Modifier.height(2.dp))
-                            Text(text = "Get real-time alerts for trails and conditions near your current location.", fontSize = 11.sp, color = TextSecondary)
+                            Text(text = stringResource(R.string.alerts_enable_location_desc), fontSize = 11.sp, color = TextSecondary)
                         }
 
                         Spacer(modifier = Modifier.width(8.dp))
@@ -276,7 +275,7 @@ fun AlertsScreen() {
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = DeepGreen, contentColor = Color.White)
                         ) {
-                            Text(text = "Enable Location", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text(text = stringResource(R.string.alerts_enable_location_btn), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }

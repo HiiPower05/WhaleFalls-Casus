@@ -27,7 +27,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Search
@@ -44,20 +43,25 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whalefalls_casus.R
+import com.example.whalefalls_casus.data.preferences.UserPreferences
 import com.example.whalefalls_casus.theme.CardSurface
 import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.DeepGreen
@@ -69,12 +73,7 @@ import com.example.whalefalls_casus.theme.SurfaceBorder
 import com.example.whalefalls_casus.theme.TextPrimary
 import com.example.whalefalls_casus.theme.TextSecondary
 import com.example.whalefalls_casus.ui.components.WhaleFallsTopAppBar
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
-import androidx.compose.runtime.rememberCoroutineScope
-import com.example.whalefalls_casus.data.preferences.UserPreferences
 
 data class TrailCardItem(
     val id: String,
@@ -98,7 +97,7 @@ fun DiscoverScreen(
     onDownloadTrail: (TrailEntity) -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf("All Trails") }
+    var selectedCategory by remember { mutableStateOf("ALL") }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -160,7 +159,7 @@ fun DiscoverScreen(
                     trail.location.contains(searchQuery, ignoreCase = true)
 
         val matchesCategory =
-            selectedCategory == "All Trails" ||
+            selectedCategory == "ALL" ||
                     trail.difficulty.equals(selectedCategory, ignoreCase = true)
 
         matchesSearch && matchesCategory
@@ -183,12 +182,13 @@ fun DiscoverScreen(
             Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Good morning, Explorer ",
+                        text = stringResource(R.string.discover_greeting),
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp,
                         color = DeepGreen
                     )
+                    Spacer(modifier = Modifier.width(6.dp))
                     Icon(
                         imageVector = Icons.Outlined.Landscape,
                         contentDescription = null,
@@ -198,20 +198,19 @@ fun DiscoverScreen(
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Where will your next adventure take you?",
+                    text = stringResource(R.string.discover_subtitle),
                     fontSize = 14.sp,
                     color = TextSecondary
                 )
             }
 
-            // Search Bar & Filter Button
             // Search Bar
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = {
                     Text(
-                        "Search trails, places or regions...",
+                        stringResource(R.string.discover_search_hint),
                         fontSize = 13.sp
                     )
                 },
@@ -235,7 +234,7 @@ fun DiscoverScreen(
                     .padding(horizontal = 20.dp, vertical = 8.dp)
             )
 
-// Filters Button
+            // Filters Button
             Surface(
                 shape = RoundedCornerShape(12.dp),
                 color = CardSurface,
@@ -254,7 +253,7 @@ fun DiscoverScreen(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Filters",
+                        text = stringResource(R.string.discover_filters),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = DeepGreen
@@ -269,39 +268,39 @@ fun DiscoverScreen(
             ) {
                 item {
                     CategoryPill(
-                        text = "All Trails",
+                        text = stringResource(R.string.discover_cat_all),
                         iconDotColor = null,
-                        isSelected = selectedCategory == "All Trails",
-                        onClick = { selectedCategory = "All Trails" }
+                        isSelected = selectedCategory == "ALL",
+                        onClick = { selectedCategory = "ALL" }
                     )
                 }
                 item {
                     CategoryPill(
-                        text = "Easy",
+                        text = stringResource(R.string.discover_cat_easy),
                         iconDotColor = EasyGreen,
-                        isSelected = selectedCategory == "Easy",
-                        onClick = { selectedCategory = "Easy" }
+                        isSelected = selectedCategory == "EASY",
+                        onClick = { selectedCategory = "EASY" }
                     )
                 }
                 item {
                     CategoryPill(
-                        text = "Moderate",
+                        text = stringResource(R.string.discover_cat_moderate),
                         iconDotColor = ModerateOrange,
-                        isSelected = selectedCategory == "Moderate",
-                        onClick = { selectedCategory = "Moderate" }
+                        isSelected = selectedCategory == "MODERATE",
+                        onClick = { selectedCategory = "MODERATE" }
                     )
                 }
                 item {
                     CategoryPill(
-                        text = "Difficult",
+                        text = stringResource(R.string.discover_cat_difficult),
                         iconDotColor = DifficultRed,
-                        isSelected = selectedCategory == "Difficult",
-                        onClick = { selectedCategory = "Difficult" }
+                        isSelected = selectedCategory == "DIFFICULT",
+                        onClick = { selectedCategory = "DIFFICULT" }
                     )
                 }
                 item {
                     CategoryPill(
-                        text = "More",
+                        text = stringResource(R.string.discover_cat_more),
                         hasDropdown = true,
                         isSelected = false,
                         onClick = { }
@@ -312,7 +311,7 @@ fun DiscoverScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Recommended Section
-            SectionHeader(title = "Recommended for you", onSeeAll = { })
+            SectionHeader(title = stringResource(R.string.discover_sec_recommended), onSeeAll = { })
 
             LazyRow(
                 contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
@@ -354,7 +353,7 @@ fun DiscoverScreen(
             }
             if (filteredTrails.isEmpty()) {
                 Text(
-                    text = "No trails found. Try another search or difficulty.",
+                    text = stringResource(R.string.discover_no_trails),
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
                     fontSize = 13.sp,
                     color = TextSecondary
@@ -364,7 +363,7 @@ fun DiscoverScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             // Popular Regions Section
-            SectionHeader(title = "Popular regions", onSeeAll = { })
+            SectionHeader(title = stringResource(R.string.discover_sec_regions), onSeeAll = { })
 
             LazyRow(
                 contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
@@ -379,7 +378,7 @@ fun DiscoverScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             // Recently Viewed Section
-            SectionHeader(title = "Recently viewed", onSeeAll = { })
+            SectionHeader(title = stringResource(R.string.discover_sec_recently_viewed), onSeeAll = { })
 
             Column(
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
@@ -436,7 +435,7 @@ fun SectionHeader(
             modifier = Modifier.clickable { onSeeAll() }
         ) {
             Text(
-                text = "View all",
+                text = stringResource(R.string.discover_view_all),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = DeepGreen
@@ -513,14 +512,12 @@ fun RecommendedTrailCard(
         modifier = Modifier.width(220.dp)
     ) {
         Column {
-            // Image Header Canvas with Badge and Bookmark
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(130.dp)
                     .background(DeepGreen)
             ) {
-                // Mountain Landscape canvas representation for photo
                 Canvas(modifier = Modifier.fillMaxSize()) {
                     drawRect(color = trail.bgGradient.first())
                     val p = Path().apply {
@@ -533,7 +530,6 @@ fun RecommendedTrailCard(
                     drawPath(p, trail.bgGradient.last())
                 }
 
-                // Difficulty Badge
                 Surface(
                     shape = RoundedCornerShape(10.dp),
                     color = trail.difficultyColor,
@@ -550,7 +546,6 @@ fun RecommendedTrailCard(
                     )
                 }
 
-                // Bookmark Icon
                 Surface(
                     shape = CircleShape,
                     color = Color.Black.copy(alpha = 0.35f),
@@ -570,7 +565,6 @@ fun RecommendedTrailCard(
                 }
             }
 
-            // Card Body Text
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = trail.name,
@@ -720,7 +714,6 @@ fun RecentlyViewedCard(
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Thumbnail image
             Box(
                 modifier = Modifier
                     .size(80.dp)
@@ -752,7 +745,7 @@ fun RecentlyViewedCard(
                         color = DeepGreen.copy(alpha = 0.1f)
                     ) {
                         Text(
-                            text = "SAVED",
+                            text = stringResource(R.string.saved_filter_all).uppercase(),
                             fontSize = 9.sp,
                             fontWeight = FontWeight.Bold,
                             color = DeepGreen,
@@ -792,7 +785,7 @@ fun RecentlyViewedCard(
                         )
                         Spacer(modifier = Modifier.width(2.dp))
                         Text(
-                            text = if (isDownloaded) "Downloaded" else "Not downloaded",
+                            text = if (isDownloaded) stringResource(R.string.saved_filter_downloaded) else "Not downloaded",
                             fontSize = 10.sp,
                             color = if (isDownloaded) EasyGreen else TextSecondary
                         )

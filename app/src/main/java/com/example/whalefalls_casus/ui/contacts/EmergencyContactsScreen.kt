@@ -1,8 +1,6 @@
 package com.example.whalefalls_casus.ui.contacts
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,14 +20,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.ChatBubbleOutline
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material.icons.filled.Shield
-import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material.icons.outlined.ChatBubbleOutline
 import androidx.compose.material.icons.outlined.LocalHospital
-import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.NearMe
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Policy
@@ -40,7 +33,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,10 +44,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whalefalls_casus.R
 import com.example.whalefalls_casus.theme.AlertGreenBg
 import com.example.whalefalls_casus.theme.AlertGreenText
 import com.example.whalefalls_casus.theme.AlertRedBg
@@ -124,7 +118,7 @@ fun EmergencyContactsScreen() {
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Emergency Contacts",
+                            text = stringResource(R.string.contacts_title),
                             fontFamily = FontFamily.Serif,
                             fontWeight = FontWeight.Bold,
                             fontSize = 26.sp,
@@ -132,7 +126,7 @@ fun EmergencyContactsScreen() {
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Manage your emergency contacts and quick access numbers.",
+                            text = stringResource(R.string.contacts_subtitle),
                             fontSize = 13.sp,
                             color = TextSecondary
                         )
@@ -148,7 +142,7 @@ fun EmergencyContactsScreen() {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(imageVector = Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text(text = "Add Contact", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(text = stringResource(R.string.contacts_add_button), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -158,7 +152,7 @@ fun EmergencyContactsScreen() {
             item {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Quick Emergency Actions",
+                    text = stringResource(R.string.contacts_quick_actions),
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
@@ -186,10 +180,10 @@ fun EmergencyContactsScreen() {
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(text = "Call Emergency Services", fontWeight = FontWeight.Bold, fontSize = 12.sp, color = AlertRedText)
+                            Text(text = stringResource(R.string.contacts_call_112), fontWeight = FontWeight.Bold, fontSize = 12.sp, color = AlertRedText)
                             Text(text = "112", fontWeight = FontWeight.Bold, fontSize = 22.sp, color = AlertRedText)
                             Spacer(modifier = Modifier.height(2.dp))
-                            Text(text = "Police · Ambulance · Fire", fontSize = 10.sp, color = TextSecondary)
+                            Text(text = stringResource(R.string.contacts_call_112_sub), fontSize = 10.sp, color = TextSecondary)
                         }
                     }
 
@@ -207,9 +201,9 @@ fun EmergencyContactsScreen() {
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(text = "Share My Location", fontWeight = FontWeight.Bold, fontSize = 13.sp, color = AlertGreenText)
+                            Text(text = stringResource(R.string.contacts_share_location), fontWeight = FontWeight.Bold, fontSize = 13.sp, color = AlertGreenText)
                             Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = "Send your location to emergency contacts", fontSize = 11.sp, color = TextSecondary, lineHeight = 15.sp)
+                            Text(text = stringResource(R.string.contacts_share_location_sub), fontSize = 11.sp, color = TextSecondary, lineHeight = 15.sp)
                         }
                     }
                 }
@@ -219,7 +213,7 @@ fun EmergencyContactsScreen() {
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "My Emergency Contacts",
+                    text = stringResource(R.string.contacts_my_contacts),
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
@@ -238,7 +232,7 @@ fun EmergencyContactsScreen() {
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Other Important Numbers",
+                    text = stringResource(R.string.contacts_other_numbers),
                     fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
@@ -301,9 +295,9 @@ fun EmergencyContactsScreen() {
                         Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(text = "Stay Safe", fontWeight = FontWeight.Bold, fontSize = 14.sp, color = DeepGreen)
+                            Text(text = stringResource(R.string.contacts_stay_safe_title), fontWeight = FontWeight.Bold, fontSize = 14.sp, color = DeepGreen)
                             Spacer(modifier = Modifier.height(2.dp))
-                            Text(text = "Always inform someone of your hiking plans and expected return time. Keep your phone charged and carry a power bank.", fontSize = 11.sp, color = TextSecondary, lineHeight = 15.sp)
+                            Text(text = stringResource(R.string.contacts_stay_safe_desc), fontSize = 11.sp, color = TextSecondary, lineHeight = 15.sp)
                         }
                     }
                 }

@@ -1,10 +1,5 @@
 package com.example.whalefalls_casus
 
-import android.app.Activity
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
-import com.example.whalefalls_casus.data.preferences.UserPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -14,21 +9,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
-import com.google.android.libraries.identity.googleid.GetGoogleIdOption
-import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
-import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+import com.example.whalefalls_casus.data.preferences.UserPreferences
 import com.example.whalefalls_casus.navigation.AppNavigation
 import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.WhaleFallsCasusTheme
 import com.example.whalefalls_casus.viewmodel.UserViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
 import kotlinx.coroutines.launch
 import android.Manifest
 import android.content.pm.PackageManager
@@ -38,7 +36,6 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessaging
 class MainActivity : ComponentActivity() {
 
-    // Initialize your UserViewModel
     private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,25 +54,29 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = LocalContext.current
 
+            val selectedLanguage by UserPreferences
+                .getLanguage(context)
+                .collectAsState(initial = "English")
+
             val darkTheme by UserPreferences
                 .getDarkTheme(context)
                 .collectAsState(initial = false)
 
-            WhaleFallsCasusTheme(darkTheme = darkTheme) {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = CreamBackground
-                ) {
-                    // Pass userViewModel and the Google sign-in trigger down to your navigation/screens
-                    AppNavigation(
-                        userViewModel = userViewModel,
-                        onGoogleSignInClicked = {
-                            triggerGoogleSignIn()
-                        }
-                    )
+                WhaleFallsCasusTheme(darkTheme = darkTheme) {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = CreamBackground
+                    ) {
+                        AppNavigation(
+                            userViewModel = userViewModel,
+                            onGoogleSignInClicked = {
+                                triggerGoogleSignIn()
+                            }
+                        )
+                    }
                 }
             }
-        }
+
     }
     private val requestNotificationPermission =
         registerForActivityResult(
@@ -117,7 +118,6 @@ class MainActivity : ComponentActivity() {
 
         val credentialManager = CredentialManager.create(this)
 
-        // Use lifecycleScope so the coroutine automatically cancels if the Activity stops
         lifecycleScope.launch {
             try {
                 val result = credentialManager.getCredential(
@@ -131,7 +131,6 @@ class MainActivity : ComponentActivity() {
                         GoogleIdTokenCredential.createFrom(credential.data)
                     val googleIdToken = googleIdTokenCredential.idToken
 
-                    // Send token to ViewModel for Firebase authentication
                     userViewModel.signInWithGoogleCredential(googleIdToken) { success, error ->
                         if (success) {
                             Toast.makeText(
