@@ -22,8 +22,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -31,7 +29,6 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ViewList
-import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.CloudDownload
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.StarBorder
@@ -54,10 +51,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whalefalls_casus.R
 import com.example.whalefalls_casus.theme.CardSurface
 import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.DeepGreen
@@ -122,7 +121,7 @@ fun SavedTrailsScreen(
                 ) {
                     Column {
                         Text(
-                            text = "Saved Trails",
+                            text = stringResource(R.string.saved_title),
                             fontFamily = FontFamily.Serif,
                             fontWeight = FontWeight.Bold,
                             fontSize = 26.sp,
@@ -130,13 +129,12 @@ fun SavedTrailsScreen(
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Your saved trails and routes, all in one place.",
+                            text = stringResource(R.string.saved_subtitle),
                             fontSize = 13.sp,
                             color = TextSecondary
                         )
                     }
 
-                    // View Toggle Buttons (List / Grid)
                     Surface(
                         shape = RoundedCornerShape(10.dp),
                         color = CardSurface,
@@ -172,10 +170,10 @@ fun SavedTrailsScreen(
                     contentPadding = PaddingValues(horizontal = 20.dp, vertical = 4.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    item { FilterPill("All", icon = Icons.Filled.Bookmark, isSelected = selectedFilter == "All", onClick = { selectedFilter = "All" }) }
-                    item { FilterPill("Downloaded", icon = Icons.Outlined.CloudDownload, isSelected = selectedFilter == "Downloaded", onClick = { selectedFilter = "Downloaded" }) }
-                    item { FilterPill("Favorites", icon = Icons.Outlined.StarBorder, isSelected = selectedFilter == "Favorites", onClick = { selectedFilter = "Favorites" }) }
-                    item { FilterPill("Completed", icon = Icons.Filled.Check, isSelected = selectedFilter == "Completed", onClick = { selectedFilter = "Completed" }) }
+                    item { FilterPill(stringResource(R.string.saved_filter_all), icon = Icons.Filled.Bookmark, isSelected = selectedFilter == "All", onClick = { selectedFilter = "All" }) }
+                    item { FilterPill(stringResource(R.string.saved_filter_downloaded), icon = Icons.Outlined.CloudDownload, isSelected = selectedFilter == "Downloaded", onClick = { selectedFilter = "Downloaded" }) }
+                    item { FilterPill(stringResource(R.string.saved_filter_favorites), icon = Icons.Outlined.StarBorder, isSelected = selectedFilter == "Favorites", onClick = { selectedFilter = "Favorites" }) }
+                    item { FilterPill(stringResource(R.string.saved_filter_completed), icon = Icons.Filled.Check, isSelected = selectedFilter == "Completed", onClick = { selectedFilter = "Completed" }) }
                 }
             }
 
@@ -190,7 +188,7 @@ fun SavedTrailsScreen(
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
-                        placeholder = { Text("Search saved trails...", fontSize = 13.sp) },
+                        placeholder = { Text(stringResource(R.string.saved_search_hint), fontSize = 13.sp) },
                         leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = SageGreen) },
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -216,7 +214,7 @@ fun SavedTrailsScreen(
                         ) {
                             Icon(imageVector = Icons.Default.FilterList, contentDescription = null, tint = DeepGreen, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text(text = "Sort by", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = DeepGreen)
+                            Text(text = stringResource(R.string.saved_sort_by), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = DeepGreen)
                             Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = null, tint = DeepGreen, modifier = Modifier.size(16.dp))
                         }
                     }
@@ -256,9 +254,9 @@ fun SavedTrailsScreen(
                         Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(text = "Access your trails anywhere", fontWeight = FontWeight.Bold, fontSize = 13.sp, color = DeepGreen)
+                            Text(text = stringResource(R.string.saved_access_anywhere), fontWeight = FontWeight.Bold, fontSize = 13.sp, color = DeepGreen)
                             Spacer(modifier = Modifier.height(2.dp))
-                            Text(text = "Downloaded trails are available offline, even without a signal.", fontSize = 11.sp, color = TextSecondary)
+                            Text(text = stringResource(R.string.saved_offline_desc), fontSize = 11.sp, color = TextSecondary)
                         }
 
                         Spacer(modifier = Modifier.width(8.dp))
@@ -268,7 +266,7 @@ fun SavedTrailsScreen(
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = DeepGreen, contentColor = Color.White)
                         ) {
-                            Text(text = "Manage Downloads", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            Text(text = stringResource(R.string.saved_manage_downloads), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -327,7 +325,6 @@ fun SavedTrailCardItem(
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Photo Canvas Thumbnail
             Box(
                 modifier = Modifier
                     .size(85.dp)
@@ -365,7 +362,7 @@ fun SavedTrailCardItem(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Icon(imageVector = Icons.Default.Check, contentDescription = null, tint = EasyGreen, modifier = Modifier.size(12.dp))
-                                Text(text = " DOWNLOADED", fontSize = 9.sp, fontWeight = FontWeight.Bold, color = EasyGreen)
+                                Text(text = " " + stringResource(R.string.saved_downloaded_badge), fontSize = 9.sp, fontWeight = FontWeight.Bold, color = EasyGreen)
                             }
                         }
                     }

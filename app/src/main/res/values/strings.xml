@@ -1,4 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WhaleFalls Casus</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_discover">Discover</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_contacts">Contacts</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Discover Screen -->
+    <string name="discover_greeting">Good morning, Explorer</string>
+    <string name="discover_subtitle">Where will your next adventure take you?</string>
+    <string name="discover_search_hint">Search trails, places or regions...</string>
+    <string name="discover_filters">Filters</string>
+    <string name="discover_cat_all">All Trails</string>
+    <string name="discover_cat_easy">Easy</string>
+    <string name="discover_cat_moderate">Moderate</string>
+    <string name="discover_cat_difficult">Difficult</string>
+    <string name="discover_cat_more">More</string>
+    <string name="discover_sec_recommended">Recommended for you</string>
+    <string name="discover_sec_regions">Popular regions</string>
+    <string name="discover_sec_recently_viewed">Recently viewed</string>
+    <string name="discover_view_all">View all</string>
+    <string name="discover_no_trails">No trails found. Try another search or difficulty.</string>
+
+    <!-- Saved Trails Screen -->
+    <string name="saved_title">Saved Trails</string>
+    <string name="saved_subtitle">Your saved trails and routes, all in one place.</string>
+    <string name="saved_filter_all">All</string>
+    <string name="saved_filter_downloaded">Downloaded</string>
+    <string name="saved_filter_favorites">Favorites</string>
+    <string name="saved_filter_completed">Completed</string>
+    <string name="saved_search_hint">Search saved trails...</string>
+    <string name="saved_sort_by">Sort by</string>
+    <string name="saved_access_anywhere">Access your trails anywhere</string>
+    <string name="saved_offline_desc">Downloaded trails are available offline, even without a signal.</string>
+    <string name="saved_manage_downloads">Manage Downloads</string>
+    <string name="saved_downloaded_badge">DOWNLOADED</string>
+
+    <!-- Alerts Screen -->
+    <string name="alerts_title">Alerts</string>
+    <string name="alerts_subtitle">Stay informed about trail conditions, weather, and closures.</string>
+    <string name="alerts_settings">Alert Settings</string>
+    <string name="alerts_filter_all">All Alerts</string>
+    <string name="alerts_filter_conditions">Trail Conditions</string>
+    <string name="alerts_filter_weather">Weather</string>
+    <string name="alerts_filter_closures">Closures</string>
+    <string name="alerts_high_priority">High Priority</string>
+    <string name="alerts_recent_alerts">Recent Alerts</string>
+    <string name="alerts_enable_location_title">Enable Location Alerts</string>
+    <string name="alerts_enable_location_desc">Get real-time alerts for trails and conditions near your current location.</string>
+    <string name="alerts_enable_location_btn">Enable Location</string>
+
+    <!-- Emergency Contacts Screen -->
+    <string name="contacts_title">Emergency Contacts</string>
+    <string name="contacts_subtitle">Manage your emergency contacts and quick access numbers.</string>
+    <string name="contacts_add_button">+ Add Contact</string>
+    <string name="contacts_quick_actions">Quick Emergency Actions</string>
+    <string name="contacts_call_112">Call Emergency Services</string>
+    <string name="contacts_call_112_sub">Police · Ambulance · Fire</string>
+    <string name="contacts_share_location">Share My Location</string>
+    <string name="contacts_share_location_sub">Send your location to emergency contacts</string>
+    <string name="contacts_my_contacts">My Emergency Contacts</string>
+    <string name="contacts_other_numbers">Other Important Numbers</string>
+    <string name="contacts_stay_safe_title">Stay Safe</string>
+    <string name="contacts_stay_safe_desc">Always inform someone of your hiking plans and expected return time. Keep your phone charged and carry a power bank.</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Manage your preferences and app settings.</string>
+    <string name="settings_group_preferences">Preferences</string>
+    <string name="settings_row_units">Units</string>
+    <string name="settings_row_language">Language</string>
+    <string name="settings_row_location_permissions">Location &amp; Permissions</string>
+    <string name="settings_row_location_sub">Manage location access and permissions</string>
+    <string name="settings_row_notifications">Notifications</string>
+    <string name="settings_row_notifications_sub">Manage alert and notification preferences</string>
+    <string name="settings_row_offline_maps">Offline Maps</string>
+    <string name="settings_row_offline_maps_sub">Manage downloaded maps</string>
+    <string name="settings_row_appearance">Appearance</string>
+    <string name="settings_mode_light">Light mode</string>
+    <string name="settings_mode_dark">Dark mode</string>
+    <string name="settings_group_safety">Safety &amp; Tracking</string>
+    <string name="settings_row_safety_features">Safety Features</string>
+    <string name="settings_row_safety_sub">Location sharing, emergency, and safety settings</string>
+    <string name="settings_row_activity_tracking">Activity Tracking</string>
+    <string name="settings_row_tracking_sub">Manage tracking preferences</string>
+    <string name="settings_group_account">Account &amp; Data</string>
+    <string name="settings_row_account">Account Settings</string>
+    <string name="settings_row_account_sub">Update your account information</string>
+    <string name="settings_row_backup">Backup &amp; Restore</string>
+    <string name="settings_row_backup_sub">Back up or restore your data</string>
+    <string name="settings_row_clear_cache">Clear Cache</string>
+    <string name="settings_row_cache_sub">Free up storage space</string>
+    <string name="settings_group_about">About</string>
+    <string name="settings_row_about_app">About WhaleFalls CASUS</string>
+    <string name="settings_row_terms">Terms of Service</string>
+    <string name="settings_row_privacy">Privacy Policy</string>
+    <string name="settings_sign_out">Sign Out</string>
+
+    <!-- Auth Screens -->
+    <string name="auth_welcome_back">Welcome Back</string>
+    <string name="auth_signin_sub">Sign in to continue your adventure</string>
+    <string name="auth_login_btn">Log In</string>
+    <string name="auth_create_account">Create Account</string>
+    <string name="auth_signup_sub">Join WhaleFalls-Casus and start your next adventure.</string>
+    <string name="auth_full_name">Full Name</string>
+    <string name="auth_full_name_hint">Enter your full name</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_email_hint">Enter your email address</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_create_password_hint">Create a password</string>
+    <string name="auth_enter_password_hint">Enter your password</string>
+    <string name="auth_confirm_password">Confirm Password</string>
+    <string name="auth_confirm_password_hint">Confirm your password</string>
+    <string name="auth_pwd_rule">At least 8 characters with a number and a symbol</string>
+    <string name="auth_agree_terms">I agree to the</string>
+    <string name="auth_terms_link">Terms of Service</string>
+    <string name="auth_and">and</string>
+    <string name="auth_privacy_link">Privacy Policy</string>
+    <string name="auth_or">OR</string>
+    <string name="auth_google_signup">Sign up with Google</string>
+    <string name="auth_google_continue">Continue with Google</string>
+    <string name="auth_already_have_acc">Already have an account?</string>
+    <string name="auth_dont_have_acc">Don\'t have an account?</string>
+    <string name="auth_signup_link">Sign up</string>
+
+    <!-- Trail Detail & Map -->
+    <string name="detail_distance">DISTANCE</string>
+    <string name="detail_time">TIME</string>
+    <string name="detail_elevation">ELEVATION GAIN</string>
+    <string name="detail_difficulty">DIFFICULTY</string>
+    <string name="detail_elevation_profile">Elevation Profile</string>
+    <string name="detail_view_on_map">View on map</string>
+    <string name="detail_trail_highlights">Trail Highlights</string>
+    <string name="detail_trail_conditions">Trail Conditions</string>
+    <string name="detail_download_offline">Download for offline</string>
+    <string name="detail_start_navigation">Start Navigation</string>
+    <string name="map_recenter">Re-center</string>
+    <string name="map_download_map">Download map</string>
+    <string name="map_start_tracking">Start Tracking</string>
+    <string name="map_pause_tracking">Pause Tracking</string>
+    <string name="map_time_elapsed">TIME ELAPSED</string>
+    <string name="map_avg_pace">AVG PACE</string>
 </resources>

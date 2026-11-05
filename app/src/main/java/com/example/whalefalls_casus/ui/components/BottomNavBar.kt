@@ -1,5 +1,6 @@
 package com.example.whalefalls_casus.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Explore
@@ -18,25 +19,26 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whalefalls_casus.R
 import com.example.whalefalls_casus.theme.CreamBackground
 import com.example.whalefalls_casus.theme.DeepGreen
 import com.example.whalefalls_casus.theme.SageGreen
 
 enum class NavigationTab(
-    val title: String,
+    @StringRes val titleRes: Int,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 ) {
-    DISCOVER("Discover", Icons.Filled.Explore, Icons.Outlined.Explore),
-    SAVED("Saved", Icons.Filled.Bookmark, Icons.Outlined.BookmarkBorder),
-    ALERTS("Alerts", Icons.Filled.Notifications, Icons.Outlined.NotificationsNone),
-    CONTACTS("Contacts", Icons.Filled.People, Icons.Outlined.PeopleOutline),
-    SETTINGS("Settings", Icons.Filled.Settings, Icons.Outlined.Settings)
+    DISCOVER(R.string.nav_discover, Icons.Filled.Explore, Icons.Outlined.Explore),
+    SAVED(R.string.nav_saved, Icons.Filled.Bookmark, Icons.Outlined.BookmarkBorder),
+    ALERTS(R.string.nav_alerts, Icons.Filled.Notifications, Icons.Outlined.NotificationsNone),
+    CONTACTS(R.string.nav_contacts, Icons.Filled.People, Icons.Outlined.PeopleOutline),
+    SETTINGS(R.string.nav_settings, Icons.Filled.Settings, Icons.Outlined.Settings)
 }
 
 @Composable
@@ -52,19 +54,20 @@ fun BottomNavBar(
     ) {
         NavigationTab.entries.forEach { tab ->
             val isSelected = currentTab == tab
+            val titleText = stringResource(id = tab.titleRes)
             NavigationBarItem(
                 selected = isSelected,
                 onClick = { onTabSelected(tab) },
                 icon = {
                     Icon(
                         imageVector = if (isSelected) tab.selectedIcon else tab.unselectedIcon,
-                        contentDescription = tab.title,
+                        contentDescription = titleText,
                         tint = if (isSelected) DeepGreen else SageGreen
                     )
                 },
                 label = {
                     Text(
-                        text = tab.title,
+                        text = titleText,
                         fontSize = 11.sp,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                         color = if (isSelected) DeepGreen else SageGreen
