@@ -24,37 +24,49 @@ The final version builds upon the original prototype by incorporating improvemen
 ## 2. Technologies and Development Tools
 
 | Technology | Purpose |
-|---|---|
-| Kotlin | Primary programming language |
-| Android Studio | Android application development |
-| Gradle | Build and dependency management |
-| Git | Version control |
-| GitHub | Source code hosting and collaboration |
-| Android Emulator | Application testing |
-| [Database] | Data storage and management |
-| [Testing Framework] | Automated testing |
+Kotlin: Main programming language used for Android application development.
+Jetpack Compose: Used to build the application's user interface.
+Android Studio: Primary IDE for development, debugging and testing.
+MapLibre SDK: Provides interactive maps and map controls.
+OpenFreeMap: Supplies map styles and map tile data.
+GPX: Used to store and integrate hiking trail route coordinates.
+Google Play Services Location: Provides GPS and device location functionality.
+Room Database: Used for local data storage.
+Retrofit: Used for handling API communication.
+Firebase: Provides backend services.
+Gradle: Manages dependencies and application builds.
+Git and GitHub: Used for source control and collaborative development.
+GitHub Actions: Automates application builds and unit testing.
 
 ## 3. Application Features
 
 The application includes the following features:
 
-- User-friendly interface and navigation.
-- [Insert application feature 1]
-- [Insert application feature 2]
-- [Insert application feature 3]
-- Input validation and error handling.
-- Application logging for debugging and monitoring.
-- Additional functionality introduced in the final version.
+Interactive Maps: Displays hiking trails using MapLibre and OpenFreeMap.
+
+Trail Routes: Shows predefined hiking routes using imported GPX data.
+
+GPS Location: Allows users to view their current location on the map.
+
+Map Controls: Supports zooming, panning, and recentering the map.
+
+Multiple Trails: Includes routes for Lion's Head, Kloof Corner, and Swartberg Pass.
+
+Automated Testing: Uses GitHub Actions to automatically run unit tests and build the Android application when code is pushed or a pull request is created.
 
 ## 4. Innovative Features
 
-The final version introduces additional functionality and improvements beyond the original prototype.
+Interactive Trail Mapping: Uses MapLibre and OpenFreeMap to provide an interactive, map-based hiking experience.
 
-| Innovative Feature | Description |
-|---|---|
-| [Feature 1] | Describe the new functionality and its benefits. |
-| [Feature 2] | Explain how it improves the application. |
-| [Feature 3] | Explain what makes this addition innovative. |
+GPX Route Integration: Imports real hiking trail data to display accurate route paths.
+
+Live GPS Positioning: Allows hikers to identify their current position in relation to the selected trail.
+
+Multiple Trail Support: Provides access to different hiking routes, including Lion's Head, Kloof Corner, and Swartberg Pass.
+
+Offline-Ready Architecture Potential: Uses locally stored GPX route data, allowing predefined trail routes to be made available without repeatedly downloading route information.
+
+Automated Build and Testing: Integrates GitHub Actions to automatically test and build the application when code is pushed or pull requests are created.
 
 These features aim to improve the application's functionality, usability and overall user experience.
 
