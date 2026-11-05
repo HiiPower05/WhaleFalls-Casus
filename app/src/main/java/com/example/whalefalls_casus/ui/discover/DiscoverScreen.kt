@@ -1,5 +1,6 @@
 package com.example.whalefalls_casus.ui.discover
 
+import com.example.whalefalls_casus.data.local.entity.TrailEntity
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -79,6 +80,8 @@ data class TrailCardItem(
     val id: String,
     val name: String,
     val location: String,
+    val latitude: Double,
+    val longitude: Double,
     val distance: String,
     val duration: String,
     val elevation: String,
@@ -91,7 +94,8 @@ data class TrailCardItem(
 
 @Composable
 fun DiscoverScreen(
-    onTrailClick: (String) -> Unit
+    onTrailClick: (String) -> Unit,
+    onDownloadTrail: (TrailEntity) -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("All Trails") }
@@ -107,6 +111,8 @@ fun DiscoverScreen(
             id = "lions_head",
             name = "Lion's Head",
             location = "Cape Town, Western Cape",
+            latitude = -33.93504,
+            longitude = 18.38914,
             distance = "5.5 km",
             duration = "~2 h",
             elevation = "669 m",
@@ -120,6 +126,8 @@ fun DiscoverScreen(
             id = "kloof_corner",
             name = "Kloof Corner Ridge",
             location = "Table Mountain, WC",
+            latitude = -33.94912,
+            longitude = 18.39884,
             distance = "3.1 km",
             duration = "~1.5 h",
             elevation = "470 m",
@@ -133,6 +141,8 @@ fun DiscoverScreen(
             id = "swartberg_pass",
             name = "Swartberg Pass",
             location = "Oudtshoorn, Western Cape",
+            latitude = -33.35234,
+            longitude = 22.04613,
             distance = "12.4 km",
             duration = "~5 h",
             elevation = "1,230 m",
@@ -317,6 +327,27 @@ fun DiscoverScreen(
                                 UserPreferences.toggleBookmark(context, trail.id)
                             }
                         },
+                        onDownloadClick = {
+                            onDownloadTrail(
+                                TrailEntity(
+                                    id = trail.id,
+                                    name = trail.name,
+                                    location = trail.location,
+                                    latitude = trail.latitude,
+                                    longitude = trail.longitude,
+                                    difficulty = trail.difficulty,
+                                    distanceKm = trail.distance
+                                        .replace(" km", "")
+                                        .toDouble(),
+                                    estimatedDurationHours = trail.duration
+                                        .replace("~", "")
+                                        .replace(" h", "")
+                                        .toDouble(),
+                                    description = "Trail information saved for offline access.",
+                                    isSavedOffline = true
+                                )
+                            )
+                        },
                         onClick = { onTrailClick(trail.id) }
                     )
                 }
@@ -471,6 +502,7 @@ fun RecommendedTrailCard(
     trail: TrailCardItem,
     isBookmarked: Boolean,
     onBookmarkClick: () -> Unit,
+    onDownloadClick: () -> Unit,
     onClick: () -> Unit
 ) {
     Card(
@@ -586,6 +618,34 @@ fun RecommendedTrailCard(
                     Text(text = trail.rating, fontSize = 12.sp, fontWeight = FontWeight.Bold, color = TextPrimary)
                     Spacer(modifier = Modifier.width(2.dp))
                     Text(text = trail.reviews, fontSize = 11.sp, color = TextSecondary)
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Surface(
+                    onClick = onDownloadClick,
+                    shape = RoundedCornerShape(8.dp),
+                    color = DeepGreen.copy(alpha = 0.1f),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier.padding(8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CloudDownload,
+                            contentDescription = "Download trail",
+                            tint = DeepGreen,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = "Download for offline",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = DeepGreen
+                        )
+                    }
                 }
             }
         }

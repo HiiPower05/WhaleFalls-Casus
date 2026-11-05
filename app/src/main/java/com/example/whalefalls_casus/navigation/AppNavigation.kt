@@ -36,7 +36,11 @@ import com.example.whalefalls_casus.ui.saved.SavedTrailsScreen
 import com.example.whalefalls_casus.ui.settings.SettingsScreen
 import com.example.whalefalls_casus.ui.splash.SplashScreen
 import com.example.whalefalls_casus.viewmodel.UserViewModel
-
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.whalefalls_casus.data.local.AppDatabase
+import com.example.whalefalls_casus.data.repository.TrailRepository
+import com.example.whalefalls_casus.ui.saved.SavedTrailsViewModel
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
     object Login : Screen("login")
@@ -203,6 +207,19 @@ fun MainAppScreen(
 ) {
     var selectedTab by remember { mutableStateOf(NavigationTab.DISCOVER) }
 
+    val context = LocalContext.current
+
+    val savedTrailsViewModel: SavedTrailsViewModel = viewModel(
+        factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                val database = AppDatabase.getDatabase(context)
+                val repository = TrailRepository(database.trailDao())
+
+                @Suppress("UNCHECKED_CAST")
+                return SavedTrailsViewModel(repository) as T
+            }
+        }
+    )
     Scaffold(
         bottomBar = {
             BottomNavBar(
@@ -213,8 +230,16 @@ fun MainAppScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             when (selectedTab) {
-                NavigationTab.DISCOVER -> DiscoverScreen(onTrailClick = onTrailClick)
-                NavigationTab.SAVED -> SavedTrailsScreen(onTrailClick = onTrailClick)
+                NavigationTab.DISCOVER -> DiscoverScreen(
+                    onTrailClick = onTrailClick,
+                    onDownloadTrail = { trail ->
+                        savedTrailsViewModel.downloadTrail(trail)
+                    }
+                )
+                NavigationTab.SAVED -> SavedTrailsScreen(
+                    onTrailClick = onTrailClick,
+                    viewModel = savedTrailsViewModel
+                )
                 NavigationTab.ALERTS -> AlertsScreen()
                 NavigationTab.CONTACTS -> EmergencyContactsScreen()
                 NavigationTab.SETTINGS -> SettingsScreen(

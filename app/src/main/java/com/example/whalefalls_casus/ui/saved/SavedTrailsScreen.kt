@@ -1,5 +1,7 @@
 package com.example.whalefalls_casus.ui.saved
 
+import androidx.compose.material.icons.filled.DeleteOutline
+import androidx.compose.runtime.collectAsState
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -86,19 +88,36 @@ data class SavedTrailItem(
 
 @Composable
 fun SavedTrailsScreen(
-    onTrailClick: (String) -> Unit
+    onTrailClick: (String) -> Unit,
+    viewModel: SavedTrailsViewModel
 ) {
+    val savedTrailEntities by viewModel.savedTrails.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
     var selectedFilter by remember { mutableStateOf("All") }
     var isListView by remember { mutableStateOf(true) }
 
-    val savedTrails = listOf(
-        SavedTrailItem("lions_head", "Lion's Head", "Cape Town, Western Cape", "5.5 km", "~2 h", "669 m", "4.8", "(2.3k reviews)", "MODERATE", ModerateOrange, true),
-        SavedTrailItem("kloof_corner", "Kloof Corner Ridge", "Table Mountain, WC", "3.1 km", "~1.5 h", "470 m", "4.7", "(1.1k reviews)", "MODERATE", ModerateOrange, true),
-        SavedTrailItem("swartberg_pass", "Swartberg Pass", "Oudtshoorn, Western Cape", "12.4 km", "~5 h", "1,230 m", "4.9", "(856 reviews)", "DIFFICULT", DifficultRed, true),
-        SavedTrailItem("silvermine", "Silvermine Loop", "Noordhoek, Western Cape", "6.2 km", "~2 h", "420 m", "4.6", "(612 reviews)", "EASY", EasyGreen, false),
-        SavedTrailItem("devils_peak", "Devil's Peak", "Cape Town, Western Cape", "7.0 km", "~3 h", "1,009 m", "4.6", "(732 reviews)", "MODERATE", ModerateOrange, false)
-    )
+    val savedTrails = savedTrailEntities.map { trail ->
+        val difficulty = trail.difficulty.uppercase()
+
+        SavedTrailItem(
+            id = trail.id,
+            name = trail.name,
+            location = trail.location,
+            distance = "${trail.distanceKm} km",
+            duration = "~${trail.estimatedDurationHours} h",
+            elevation = "—",
+            rating = "—",
+            reviews = "",
+            difficulty = difficulty,
+            difficultyColor = when (difficulty) {
+                "EASY" -> EasyGreen
+                "MODERATE" -> ModerateOrange
+                "DIFFICULT" -> DifficultRed
+                else -> SageGreen
+            },
+            isDownloaded = trail.isSavedOffline
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -226,7 +245,11 @@ fun SavedTrailsScreen(
             // Saved Trails List Items
             items(savedTrails) { trail ->
                 Box(modifier = Modifier.padding(horizontal = 20.dp, vertical = 6.dp)) {
-                    SavedTrailCardItem(trail = trail, onClick = { onTrailClick(trail.id) })
+                    SavedTrailCardItem(
+                        trail = trail,
+                        onClick = { onTrailClick(trail.id) },
+                        onRemoveClick = { viewModel.removeTrail(trail.id) }
+                    )
                 }
             }
 
@@ -314,7 +337,8 @@ fun FilterPill(
 @Composable
 fun SavedTrailCardItem(
     trail: SavedTrailItem,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onRemoveClick: () -> Unit
 ) {
     Card(
         onClick = onClick,
@@ -394,7 +418,14 @@ fun SavedTrailCardItem(
                     Row {
                         Icon(imageVector = Icons.Filled.Bookmark, contentDescription = null, tint = DeepGreen, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Icon(imageVector = Icons.Default.MoreVert, contentDescription = null, tint = SageGreen, modifier = Modifier.size(18.dp))
+                        IconButton(onClick = onRemoveClick) {
+                            Icon(
+                                imageVector = Icons.Default.DeleteOutline,
+                                contentDescription = "Remove downloaded trail",
+                                tint = SageGreen,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
                     }
                 }
             }

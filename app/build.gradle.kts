@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
+    // Push time notifacations
+    implementation("com.google.firebase:firebase-messaging")
 
     // For settings
     implementation("androidx.datastore:datastore-preferences:1.1.7")

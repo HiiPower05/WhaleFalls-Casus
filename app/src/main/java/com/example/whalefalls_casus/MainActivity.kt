@@ -30,7 +30,12 @@ import com.example.whalefalls_casus.viewmodel.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import com.google.firebase.messaging.FirebaseMessaging
 class MainActivity : ComponentActivity() {
 
     // Initialize your UserViewModel
@@ -38,6 +43,16 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        askNotificationPermission()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("FCM", "Failed to retrieve FCM token", task.exception)
+                return@addOnCompleteListener
+            }
+
+            val token = task.result
+            Log.d("FCM", "Device FCM Token: $token")
+        }
         enableEdgeToEdge()
         setContent {
             val context = LocalContext.current
@@ -62,7 +77,30 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
+    private val requestNotificationPermission =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                Log.d("FCM", "Notification permission granted")
+            } else {
+                Log.d("FCM", "Notification permission denied")
+            }
+        }
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestNotificationPermission.launch(
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
+            }
+        }
+    }
     // --- Credential Manager Google Sign-In Logic ---
     private fun triggerGoogleSignIn() {
         val rawClientId = "227790233233-rlqcdfna7bavs8n5vpls1487n6es0i19.apps.googleusercontent.com"

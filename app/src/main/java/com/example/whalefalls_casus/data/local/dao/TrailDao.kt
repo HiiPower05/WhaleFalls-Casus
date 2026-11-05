@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TrailDao {
 
-    @Query("SELECT * FROM trails ORDER BY downloadedAtTimestamp DESC")
+    @Query("SELECT * FROM trails WHERE isSavedOffline = 1 ORDER BY downloadedAtTimestamp DESC")
     fun getAllSavedTrails(): Flow<List<TrailEntity>>
 
     @Query("SELECT * FROM trails WHERE id = :trailId")
