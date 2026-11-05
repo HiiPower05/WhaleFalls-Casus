@@ -145,11 +145,15 @@ All screenshots are organised in the screenshots directory.
 
 <img width="395" height="860" alt="WhatsApp Image 2026-11-05 at 6 45 28 PM" src="https://github.com/user-attachments/assets/cf08ab83-30d6-4be1-983d-2ff8a76a62ce" />
 
+## Signed APK
+<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/838d84c3-f508-43d8-98ce-6dc150c7f48e" />
+
+
 ## 9. Video Presentation
 
 A video presentation demonstrating the completed application is provided below.
 
-**Video Presentation:** [Insert Unlisted YouTube Link]
+**Video Presentation:** https://www.youtube.com/watch?v=yQmGoTriIdU 
 
 The presentation includes a voice-over explaining the application's purpose, main features, navigation, innovative functionality and technical implementation.
 
