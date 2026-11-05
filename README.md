@@ -10,3 +10,5 @@ activityCompose = "1.10.0"
 
 changed firebase version instead of gradle.
 implementation(platform("com.google.firebase:firebase-bom:34.19.0")) --> implementation(platform("com.google.firebase:firebase-bom:33.1.0")) 
+
+CAN THIS FILE BE EDITED?
