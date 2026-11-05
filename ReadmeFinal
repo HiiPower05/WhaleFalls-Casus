@@ -1,0 +1,260 @@
+# WhaleFalls Casus
+
+**WhaleFalls Casus** is a mobile hiking-trail companion app for discovering, saving,
+and downloading trails in Cape Town and the Western Cape. It was built as the final 
+group project for the **Diploma in Software Development (OPSC6321 – Part 3, Final Submission)
+** at Rosebank College (IIE).
+
+ Table of Contents
+
+1. [Overview](#overview)
+2. [Screenshots](#screenshots)
+3. [Features](#features)
+4. [App Navigation](#app-navigation)
+5. [Tech Stack](#tech-stack)
+6. [Architecture](#architecture)
+7. [Getting Started](#getting-started)
+8. [User Flow](#user-flow)
+9. [API and Data Handling](#api-and-data-handling)
+10. [External Libraries / SDKs](#external-libraries--sdks)
+11. [Testing](#testing)
+12. [What Changed Since Part 2](#what-changed-since-part-2)
+13. [Known Issues and Future Improvements](#known-issues-and-future-improvements)
+14. [Submission Evidence](#submission-evidence)
+15. [Demo Video](#demo-video)
+16. [Team](#team)
+17. [AI Declaration](#ai-declaration)
+
+---
+
+Overview
+
+Hikers in the Western Cape often lose mobile signal on the trail. WhaleFalls Casus lets users
+  find trails that match their ability, save their favourites, and download trail data so it stays
+  available **offline**, even without a signal.
+
+- Target users: [e.g. casual and experienced hikers in the Western Cape]
+- Problem solved: [e.g. finding suitable trails and accessing them without signal]
+- Platform: [e.g. Android, minimum SDK X]
+
+Screenshots
+
+| Discover | Saved | Settings |
+|:---:|:---:|:---:|
+| <img src="screenshots/discover.png" width="240"/> | <img src="screenshots/saved.png" width="240"/> | <img src="screenshots/settings.png" width="240"/> |
+
+## Features
+
+### Trail discovery
+- Search bar for trails, places, or regions
+- Filters button for refining results
+- Difficulty filter chips: **All Trails, Easy, Moderate, Difficult** (colour-coded green, orange, red)
+- "Recommended for you" carousel with a **View all** option
+- Trail cards showing name, location, distance, estimated time, elevation gain, difficulty badge, and rating with review count
+  - Example: *Lion's Head, Cape Town: 5.5 km, ~2 h, 669 m, 4.8 stars (2.3k)*
+  - Example: *Kloof Corner Route, Table Mountain: 3.1 km, ~1.5 h, 470 m, 4.7 stars (1.1k)*
+
+### Saved trails and offline access
+- Bookmark any trail to save it
+- **Download for offline** so trails work without signal
+- Saved screen lists bookmarked trails with a **Downloaded** status badge
+- Remove a saved or downloaded trail with the delete button
+- "Access your trails anywhere" banner explaining offline availability
+
+### Settings and personalisation
+- User profile card with name and email
+- **Units** (e.g. Metric / Imperial)
+- **Language** (e.g. English / Afrikaans)
+- **Location & Permissions** management
+- **Notifications** preferences
+- **Offline Maps** management of downloaded maps
+- [Any further settings, e.g. About, Log out]
+
+### Alerts and contacts
+- Notification bell with an unread badge on every screen
+- **Alerts** tab: [describe, e.g. trail or weather alerts]
+- **Contacts** tab: [describe, e.g. emergency contacts]
+
+## App Navigation
+
+Bottom navigation bar with five tabs, plus a menu button and a notification bell in the top bar:
+
+| Tab | Purpose |
+|---|---|
+| **Discover** | Search, filter, and browse trails |
+| **Saved** | Bookmarked and downloaded trails |
+| **Alerts** | [Describe] |
+| **Contacts** | [Describe] |
+| **Settings** | Profile, units, language, permissions, notifications, offline maps |
+
+## Tech Stack
+
+| Area | Technology |
+|---|---|
+| Language | [e.g. Kotlin] |
+| IDE | [e.g. Android Studio] |
+| UI | [e.g. Jetpack Compose / XML] |
+| Local storage (offline) | [e.g. Room / SQLite] |
+| Remote data / API | [e.g. REST API / Firebase] |
+| Authentication | [e.g. Firebase Auth] |
+| Maps / location | [e.g. Google Maps SDK / Mapbox] |
+| Testing | [e.g. JUnit, Espresso] |
+
+## Architecture
+
+| Layer | Responsibility |
+|---|---|
+| **UI** | Discover, Saved, Alerts, Contacts, and Settings screens |
+| **Application logic** | Search, filtering, bookmarking, download handling, validation |
+| **Data layer** | Remote trail data plus local storage for offline trails |
+| **Libraries / SDKs** | Maps, location, networking, [others] |
+
+[Architecture pattern, e.g. MVVM + Repository.]
+
+## Getting Started
+
+### Prerequisites
+
+- [IDE and version]
+- [JDK / SDK version]
+- Emulator or physical device ([minimum OS version])
+- [API keys / config files, e.g. `google-services.json`, Maps API key]
+
+### Installation
+
+```bash
+git clone https://github.com/HiiPower05/WhaleFalls-Casus.git
+```
+
+1. Open the project in your IDE
+2. Add required config files / API keys
+3. Sync dependencies and build
+4. Run on an emulator or physical device
+
+## User Flow
+
+1. Launch the app and land on **Discover**
+2. Search or filter trails by difficulty
+3. Open a trail card and review distance, time, elevation, and rating
+4. Bookmark a trail and tap **Download for offline**
+5. Open **Saved** to see the trail marked **Downloaded**
+6. Adjust units, language, and permissions in **Settings**
+
+## API and Data Handling
+
+- **Data source:** [REST API / Firebase / local database]
+- **Trail data:** [fields stored: name, location, distance, duration, elevation, difficulty, rating]
+- **Offline storage:** [how downloaded trails are stored and retrieved]
+- **User data:** [profile and settings storage]
+- **Error handling:** [no signal, failed download, empty results]
+
+## External Libraries / SDKs
+
+| Library / SDK | Why it was chosen | Where it is used |
+|---|---|---|
+| [Library 1] | [Reason] | [Screen / class] |
+| [Library 2] | [Reason] | [Screen / class] |
+
+## Testing
+
+- **Normal input:** [e.g. search returns matching trails, bookmark saves]
+- **Invalid input:** [e.g. empty search, invalid settings]
+- **Edge cases:** [e.g. offline mode, no results, deleting a downloaded trail]
+
+```bash
+[e.g. ./gradlew test]
+```
+
+Results: [summary or screenshot reference].
+
+## What Changed Since Part 2
+
+| Area | Part 2 | Part 3 (Final) |
+|---|---|---|
+| [Feature] | [Previous state] | [Final state] |
+| [Bug fix] | [Issue] | [Resolution] |
+| [Lecturer feedback] | [Feedback] | [Change made] |
+
+## Known Issues and Future Improvements
+
+**Known issues**
+- [Issue, or "None"]
+
+**Planned improvements**
+- [e.g. live trail conditions, GPS tracking, community reviews]
+
+## Submission Evidence
+
+- [ ] Complete project (required format)
+- [ ] Working, compilable application
+- [ ] Demo video
+- [ ] PDF documentation
+- [ ] Screenshots
+- [ ] Testing evidence
+- [ ] [Release build / APK, if required]
+
+## Demo Video
+
+[Insert video link]
+
+## Team
+
+| Name | Student Number | Contribution |
+|---|---|---|
+| Wayne Robert | [Student No.] | [Contribution] |
+| Euan Henry | [Student No.] | [Contribution] |
+| Ingvar Hultkrantz | [Student No.] | [Contribution] |
+| Hassan [Surname] | [Student No.] | [Contribution] |
+
+Rosebank College (IIE) – Diploma in Software Development, OPSC6321 Part 3 Final Submission
+
+---
+
+## AI Declaration
+
+**Module:** OPSC6321 – Part 3 (Final Submission) | **Project:** WhaleFalls Casus | **Institution:** Rosebank College (IIE)
+
+### 1. Declaration of use
+
+We, the undersigned group members, declare that:
+
+1. This submission is our own work. Where generative AI tools were used, they are disclosed in full below.
+2. AI tools were used as assistants only. They did not replace our own understanding, design decisions, or learning.
+3. We reviewed, tested, and edited all AI-assisted output, and we can explain and defend every part of the submitted code and documentation.
+4. No confidential or personal information (e.g. real user data or credentials) was entered into any AI tool.
+5. We are responsible for the accuracy, originality, and integrity of this submission.
+
+### 2. AI tools used
+
+| Tool | Version / date used | Member(s) | Purpose | Project area |
+|---|---|---|---|---|
+| Claude (Anthropic) | [Model, date] | [Name] | Drafting and structuring README documentation | README.md |
+| [e.g. ChatGPT / Copilot / Gemini] | [Model, date] | [Name] | [e.g. debugging, code explanation] | [Files / features] |
+| [Add or delete rows] | | | | |
+
+### 3. Disclosure per area
+
+| Area | AI used? | How it was used / what we did ourselves |
+|---|---|---|
+| UI design and layouts | [Yes/No] | [Details] |
+| Application code | [Yes/No] | [Details] |
+| Database / API integration | [Yes/No] | [Details] |
+| Unit tests | [Yes/No] | [Details] |
+| Documentation (README, PDF) | Yes | AI helped structure the README; the team supplied the app details and verified the content |
+| Demo video / script | [Yes/No] | [Details] |
+
+### 4. Verification and responsibility
+
+- [e.g. All AI-suggested code was run, tested, and reviewed by at least one other member]
+- [e.g. Prompts and outputs are available on request]
+
+### 5. Signatures
+
+| Name | Student Number | Signature | Date |
+|---|---|---|---|
+| Wayne Robert | [Student No.] | | |
+| Euan Henry | [Student No.] | | |
+| Ingvar Hultkrantz | [Student No.] | | |
+| Hassan [Surname] | [Student No.] | | |
+
+> Be honest and specific. If your lecturer or the IIE provides an official AI declaration form, attach it and keep this section consistent with it.
